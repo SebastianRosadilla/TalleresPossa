@@ -1,0 +1,29 @@
+{
+  "name": "tallerespossa",
+  "description": "TalleresPossa company website",
+  "main": "gulpfile.js",
+  "authors": [
+    "Alfred Sebastian Rosadilla Ribeiro"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/SebastianRosadilla/TalleresPossa",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.4.7",
+    "angular-resource": "~1.4.7",
+    "angular-ui-router": "~0.2.15",
+    "angular-extend-promises": "~1.0.0-rc.3",
+    "requirejs": "~2.1.20"
+  }
+}
