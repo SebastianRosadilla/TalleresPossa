@@ -6,11 +6,15 @@ var gulp = require('gulp'),
  */
 var FILES = {
   SRC: {
-    JS: ['src/**/js/**/*.js', 'src/**/js/*.js', 'src/extra/*.*'],
-    SCSS: ['src/**/scss/*.*', 'src/**/scss/**/*.*'],
+    JS: ['src/**/js/**/*.js', 'src/**/js/*.js', 'src/extra/*.*',
+         'bower_components/bootstrap/dist/js/bootstrap.min.js'],
+    SCSS: ['src/**/scss/*.*', 'src/**/scss/**/*.*', 
+           'bower_components/bootstrap/dist/css/bootstrap.min.css',
+           'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'],
     HTML: ['src/**/templates/*.*', 'src/index.html'],
     BOWER: ['bower_components/**/*.*', 'src/extra/*.*'],
-    FONT: ['src/app/fonts/**/*.*', 'src/app/fonts/*.*'],
+    FONT: ['src/app/fonts/**/*.*', 'src/app/fonts/*.*', 
+           'bower_components/bootstrap/dist/fonts/*.*'],
     IMG: ['src/img/**/*.*']
   },
   DEST: {
