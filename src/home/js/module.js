@@ -3,18 +3,17 @@
 
   var dependencies = [
     'ui.router',
-    'ngResource',
-    'home'
+    'ngResource'
   ];
 
-  ng.module('talleresPossa', dependencies)
+  ng.module('home', dependencies)
     .config(function($stateProvider, $urlRouterProvider) {
       $stateProvider
-        .state('landing', {
-          url: '',
+        .state('home', {
+          url: '/home',
           views: {
             main: {
-              templateUrl: 'app/templates/landing.html',
+              templateUrl: 'home/templates/home.html',
               controller: 'LandingCtrl as landing'
             },
             header: {

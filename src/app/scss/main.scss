@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+}
+
+.main {
+  height: 65%;
+  position: relative;
+
+  .landing {
+    height: 100%;
+  }
+
+  .img-effects {
+    margin-top: 3%;
+    @media screen and (max-width: 768px) {
+      margin-top: 10%;
+    }
+
+    &:nth-child(2) {
+      margin-top: -3%;
+    }
+  }
+
+  .description {
+    text-align: justify;
+
+    h1 {
+      text-align: center;
+    }
+
+    footer {
+      text-align: right;
+    }
+  }
+}

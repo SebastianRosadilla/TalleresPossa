@@ -1,18 +1,30 @@
-<div class="container-fluid col-xs-12 bg-primary" ng-class="{'hidden': footer.public}">
+<div class="container col-xs-12
+            bg-primary foot-bar"
+     ng-class="{'openfooter' : landing.openfooter }">
   <footer>
-    <div class="container col-xs-6">
-      <ul>
-        <li>hola1</li>
-        <li>hola2</li>
-        <li>hola3</li>
-      </ul>
+    <div class="container-fluid col-xs-12"
+         ng-click="landing.openfooter = !landing.openfooter">
+         <span class="glyphicon glyphicon-chevron-up"></span>
     </div>
-    <div class="container col-xs-6">
-      <ul>
-        <li>hola1</li>
-        <li>hola2</li>
-        <li>hola3</li>
-      </ul>
+
+    <div class="container col-xs-12">
+      <h3><b>TALLERES POSSA</b></h3>
+      <hr>
     </div>
+
+    <blockquote class="containter col-xs-6">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+      </p>
+    </blockquote>
+
+    <blockquote class="containter col-xs-6">
+      <ul>
+        <li><span class="glyphicon glyphicon-globe"></span> Social(1)</li>
+        <li><span class="glyphicon glyphicon-globe"></span> Social(2)</li>
+        <li><span class="glyphicon glyphicon-globe"></span> Social(3)</li>
+      </ul>
+    </blockquote>
   </footer>
 </div>

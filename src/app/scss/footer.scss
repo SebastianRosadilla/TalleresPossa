@@ -1,0 +1,48 @@
+.footer {
+  bottom: 0;
+  height: 35%;
+  // margin-top: -20%;
+  overflow: hidden;
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+
+  .foot-bar {
+    border: 6px dashed black;
+    border-radius: 5px;
+    bottom: -82%;
+    box-sizing: border-box;
+    height: 110%;
+    transition: 1.5s;
+    pointer-events: all;
+    @media screen and (max-width: 768px) {
+      margin: 1% 0;
+    }
+
+    &.openfooter {
+      bottom: 0;
+
+      @media screen and (max-width: 960px) {
+        bottom: -7%;
+      }
+      span {
+        &.glyphicon-chevron-up {
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+
+    footer {
+      div:first-child {
+        box-sizing: border-box;
+        height: 5%;
+        text-align: center;
+        transform: scale(2);
+        padding-top: 10px;
+        @media screen and (max-width: 760px) {
+          padding-top: 1%;
+        }
+      }
+    }
+  }
+}
