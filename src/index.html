@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Talleres Possa</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<!-- Angular JS and UI Router -->
@@ -21,15 +21,11 @@
 
 </head>
 <body ng-app="talleresPossa">
-	<header>
-		<nav>
-			<ul>
-				<li><a sr-href=""></a></li>
-				<li><a sr-href=""></a></li>
-				<li><a sr-href=""></a></li>
-			</ul>
-		</nav>
-	</header>
+	<div ui-view="header"></div>
+
+  <div class="container col-xs-12 main" ui-view="main"></div>
+
+  <div ui-view="footer"></div>
 
 </body>
 </html>

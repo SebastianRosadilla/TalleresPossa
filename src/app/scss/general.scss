@@ -1,0 +1,66 @@
+html, body {
+  height: 100%;
+}
+
+.main {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+
+  .landing {
+    // background-image: url('../img/BMW-E34-M5-17.jpg');
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    height: 100%;
+  }
+
+  .img-effects {
+    margin-top: 7%;
+    @media screen and (max-width: 768px) {
+      margin-top: 10%;
+    }
+  }
+
+  .description {
+    text-align: center;
+  }
+
+  .foot-bar {
+    border: 6px dashed black;
+    border-radius: 5px;
+    bottom: -45%;
+    box-sizing: border-box;
+    height: 50%;
+    margin-left: 10px;
+    position: absolute;
+    transition: 1.5s;
+    @media screen and (max-width: 768px) {
+      margin: 1% 0;
+    }
+
+    &.openfooter {
+      bottom: -5px;
+      padding: 15px 0;
+
+      @media screen and (max-width: 768px) {
+        bottom: -3%;
+      }
+      span {
+        &.glyphicon-chevron-up {
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+
+    footer {
+      div:first-child {
+        box-sizing: border-box;
+        height: 5%;
+        text-align: center;
+        transform: scale(2);
+        padding: 10px 0;
+      }
+    }
+  }
+
+}

@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    minify = require('gulp-minify'),
     plugins = require('gulp-load-plugins')({ pattern: '*' });
 
 /**
@@ -8,12 +9,12 @@ var FILES = {
   SRC: {
     JS: ['src/**/js/**/*.js', 'src/**/js/*.js', 'src/extra/*.*',
          'bower_components/bootstrap/dist/js/bootstrap.min.js'],
-    SCSS: ['src/**/scss/*.*', 'src/**/scss/**/*.*', 
+    SCSS: ['src/**/scss/*.*', 'src/**/scss/**/*.*',
            'bower_components/bootstrap/dist/css/bootstrap.min.css',
            'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'],
     HTML: ['src/**/templates/*.*', 'src/index.html'],
     BOWER: ['bower_components/**/*.*', 'src/extra/*.*'],
-    FONT: ['src/app/fonts/**/*.*', 'src/app/fonts/*.*', 
+    FONT: ['src/app/fonts/**/*.*', 'src/app/fonts/*.*',
            'bower_components/bootstrap/dist/fonts/*.*'],
     IMG: ['src/img/**/*.*']
   },
@@ -71,6 +72,7 @@ gulp.task('js', function () {
   gulp
     .src(FILES.SRC.JS)
     .pipe(plugins.concat('app.js'))
+    .pipe(minify())
     .pipe(gulp.dest(FILES.DEST.JS));
 });
 
@@ -82,6 +84,7 @@ gulp.task('scss', function () {
     .src(FILES.SRC.SCSS)
     .pipe(plugins.sass())
     .pipe(plugins.concat('app.css'))
+    .pipe(minify())
     .pipe(gulp.dest(FILES.DEST.CSS));
 });
 
