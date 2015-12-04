@@ -5,16 +5,35 @@
     this._$state = $state;
     this._$scope = $scope;
 
-    this.public = this.public();
+    this.stateSelected();
   };
 
   // Return true if state is landing page
-  HeaderCtrl.prototype.public = function() {
-    var $state = this._$state;
+  HeaderCtrl.prototype.stateSelected = function () {
+    var $scope = this._$scope,
+        $state = this._$state,
+        height = window.screen.height,
+        parentElemetns = document.getElementsByClassName("menu")[0],
+        elements = [parentElemetns.firstChild.nextSibling];
 
-    if($state.current.name == "landing") return true;
+    var iter = 0;
+    while(elements[iter].nextSibling.nextSibling != null) {
+      elements.push(elements[iter].nextSibling.nextSibling);
+      iter++;
+    }
 
-    return false;
+    document.addEventListener("scroll", function() {
+      var j = Math.ceil(window.scrollY / height);
+      j = (j == 0) ? 0 : j-1;
+
+      for (var i = 0; i < elements.length; i++) {
+        if (i == j) {
+          elements[i].classList.add('select');
+        } else {
+          elements[i].classList.remove('select');
+        }
+      }
+    },false);
   }
 
   ng.module('talleresPossa')

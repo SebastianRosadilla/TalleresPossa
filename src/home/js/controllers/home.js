@@ -1,13 +1,21 @@
 (function (ng) {
   'use strict';
 
-  var LandingCtrl = function ($state, $scope) {
+  var HomeCtrl = function ($state, $scope) {
     this._$state = $state;
     this._$scope = $scope;
 
     this.openfooter = false;
+    this.heightHome();
   };
 
+  HomeCtrl.prototype.heightHome = function() {
+    var height = window.screen.height,
+        element = document.getElementsByClassName('home')[0];
+
+        element.style.height =  height * 3 + 'px';
+  }
+
   ng.module('talleresPossa')
-    .controller('LandingCtrl', LandingCtrl);
+    .controller('HomeCtrl', HomeCtrl);
 })(angular);

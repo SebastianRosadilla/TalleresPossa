@@ -14,7 +14,7 @@
           views: {
             main: {
               templateUrl: 'home/templates/home.html',
-              controller: 'LandingCtrl as landing'
+              controller: 'HomeCtrl as home'
             },
             header: {
               templateUrl: 'app/templates/header.html',

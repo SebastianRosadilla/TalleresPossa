@@ -21,10 +21,10 @@
 
 </head>
 <body ng-app="talleresPossa">
-	<div ui-view="header"></div>
+	<div ui-view="header" class="container-fluid col-xs-12 header"></div>
 
-  <div class="container col-xs-12 main" ui-view="main"></div>
+  <div ui-view="main" class="main"></div>
 
-  <div ui-view="footer" class="container col-xs-12 navbar-fixed-bottom footer"></div>
+  <div ui-view="footer" class="container col-xs-12  footer"></div>
 </body>
 </html>

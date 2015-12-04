@@ -1,39 +1,15 @@
-html, body {
-  height: 100%;
-}
+.home {
+  div {
+    background-image: url('../img/Fondo1.png');
+    box-sizing: border-box;
+    height: 33.3333333333%;
 
-.main {
-  // overflow: hidden;
-  height: 65%;
-  position: relative;
-
-  .landing {
-    // background-image: url('../img/BMW-E34-M5-17.jpg');
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    height: 100%;
-  }
-
-  .img-effects {
-    margin-top: 3%;
-    @media screen and (max-width: 768px) {
-      margin-top: 10%;
+    &:first-child {
+      background-image: url('../img/Fondo3.png');
+      padding-top: 50px;
     }
-
-    &:nth-child(2) {
-      margin-top: -3%;
-    }
-  }
-
-  .description {
-    text-align: justify;
-
-    h1 {
-      text-align: center;
-    }
-
-    footer {
-      text-align: right;
+    &:last-child {
+      background-image: url('../img/Fondo2.png');
     }
   }
 }
