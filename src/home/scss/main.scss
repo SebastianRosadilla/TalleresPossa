@@ -1,15 +1,46 @@
 .home {
-  div {
-    background-image: url('../img/Fondo1.png');
-    box-sizing: border-box;
-    height: 33.3333333333%;
-
+  >div {
     &:first-child {
       background-image: url('../img/Fondo3.png');
-      padding-top: 50px;
+
+      >div {
+        background: white;
+        border: 1px solid gray;
+        border-radius: 5px;
+        box-sizing: border-box;
+        height: 90%;
+        opacity: 0.4;
+        padding: 1%;
+        >div {
+          border: 2px dashed black;
+          height: 50%;
+        }
+
+      }
     }
-    &:last-child {
+
+    &:nth-child(2) {
+      background-image: url('../img/Fondo1.png');
+      box-sizing: border-box;
+
+      >div {
+        opacity: 0.6;
+      }
+    }
+
+    &:nth-child(3) {
       background-image: url('../img/Fondo2.png');
+    }
+
+    &:last-child {
+      >div {
+        height: 100%;
+        padding-top: 5%;
+
+        .foot-bar {
+          border-top: 0;
+        }
+      }
     }
   }
 }

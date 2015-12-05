@@ -1,13 +1,16 @@
-html, body {
+  html, body {
   height: 100%;
 }
 
 .main {
-  height: 65%;
+  height: 100%;
   position: relative;
+  width: 100%;
 
   .landing {
+    box-sizing: border-box;
     height: 100%;
+    overflow-y: hidden;
   }
 
   .img-effects {
@@ -18,18 +21,21 @@ html, body {
 
     &:nth-child(2) {
       margin-top: -3%;
+      @media screen and (min-width: 1220px) {
+        margin-top: -6%;
+      }
     }
   }
 
   .description {
+    box-sizing: border-box;
+    height: 50%;
+    margin-bottom: 1%;
+    overflow: hidden;
     text-align: justify;
 
-    h1 {
+    h3 {
       text-align: center;
-    }
-
-    footer {
-      text-align: right;
     }
   }
 }

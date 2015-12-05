@@ -19,10 +19,6 @@
             header: {
               templateUrl: 'app/templates/header.html',
               controller: 'HeaderCtrl as header'
-            },
-            footer: {
-              templateUrl: 'app/templates/footer.html',
-              controller: 'FooterCtrl as footer'
             }
           }
         });

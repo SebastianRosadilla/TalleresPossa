@@ -16,12 +16,14 @@
             main: {
               templateUrl: 'app/templates/landing.html',
               controller: 'LandingCtrl as landing'
-            },
-            footer: {
-              templateUrl: 'app/templates/footer.html',
-              controller: 'FooterCtrl as footer'
             }
           }
         });
+    })
+    .directive('srFooter', function() {
+      return {
+        templateUrl: 'app/templates/footer.html',
+        restrict: 'E'
+      }
     });
 })(angular);
