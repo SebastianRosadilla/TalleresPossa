@@ -3,7 +3,8 @@
 
   var dependencies = [
     'ui.router',
-    'ngResource'
+    'ngResource',
+    'home'
   ];
 
   ng.module('talleresPossa', dependencies)
@@ -15,14 +16,39 @@
             main: {
               templateUrl: 'app/templates/landing.html',
               controller: 'LandingCtrl as landing'
+            }
+          }
+        });
+    })
+    .directive('srFooter', function() {
+      return {
+        templateUrl: 'app/templates/footer.html',
+        restrict: 'E'
+      }
+    });
+})(angular);
+
+(function(ng) {
+  'use strict';
+
+  var dependencies = [
+    'ui.router',
+    'ngResource'
+  ];
+
+  ng.module('home', dependencies)
+    .config(function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('home', {
+          url: '/home',
+          views: {
+            main: {
+              templateUrl: 'home/templates/home.html',
+              controller: 'HomeCtrl as home'
             },
             header: {
               templateUrl: 'app/templates/header.html',
               controller: 'HeaderCtrl as header'
-            },
-            footer: {
-              templateUrl: 'app/templates/footer.html',
-              controller: 'FooterCtrl as footer'
             }
           }
         });
@@ -32,32 +58,39 @@
 (function (ng) {
   'use strict';
 
-  var FooterCtrl = function ($state, $scope) {
-    this._$state = $state;
-    this._$scope = $scope;
-  };
-
-  ng.module('talleresPossa')
-    .controller('FooterCtrl', FooterCtrl);
-})(angular);
-
-(function (ng) {
-  'use strict';
-
   var HeaderCtrl = function ($state, $scope) {
     this._$state = $state;
     this._$scope = $scope;
 
-    this.public = this.public();
+    this.stateSelected();
   };
 
   // Return true if state is landing page
-  HeaderCtrl.prototype.public = function() {
-    var $state = this._$state;
-
-    if($state.current.name == "landing") return true;
-
-    return false;
+  HeaderCtrl.prototype.stateSelected = function () {
+    // var $scope = this._$scope,
+    //     $state = this._$state,
+    //     height = window.screen.height,
+    //     parentElemetns = document.getElementsByClassName("menu")[0],
+    //     elements = [parentElemetns.firstChild.nextSibling];
+    //
+    // var iter = 0;
+    // while(elements[iter].nextSibling.nextSibling != null) {
+    //   elements.push(elements[iter].nextSibling.nextSibling);
+    //   iter++;
+    // }
+    //
+    // document.addEventListener("scroll", function() {
+    //   var j = Math.ceil(window.scrollY / height);
+    //   j = (j == 0) ? 0 : j-1;
+    //
+    //   for (var i = 0; i < elements.length; i++) {
+    //     if (i == j) {
+    //       elements[i].classList.add('select');
+    //     } else {
+    //       elements[i].classList.remove('select');
+    //     }
+    //   }
+    // },false);
   }
 
   ng.module('talleresPossa')
@@ -70,12 +103,92 @@
   var LandingCtrl = function ($state, $scope) {
     this._$state = $state;
     this._$scope = $scope;
-
-    this.openfooter = false;
   };
 
   ng.module('talleresPossa')
     .controller('LandingCtrl', LandingCtrl);
+})(angular);
+
+(function (ng) {
+  'use strict';
+
+  var HomeCtrl = function ($state, $scope) {
+    this._$state = $state;
+    this._$scope = $scope;
+
+    this.stylesHome();
+    this.scrollPage();
+  };
+
+  HomeCtrl.prototype.stylesHome = function() {
+    var height = window.screen.height,
+        homeMain = document.getElementsByClassName('home')[0],
+        main = document.getElementsByClassName('main')[0],
+        body = document.getElementsByTagName('body')[0];
+
+        // height
+        homeMain.style.height =  height * 3 + 'px';
+        main.style.height = height * 3 + 'px';
+        body.style.height = height * 3 + height/2 + 'px';
+  }
+
+  HomeCtrl.prototype.scrollPage = function() {
+    // Start the fullPage plugin
+    angular.element(document).ready(function() {
+      $('#fullpage-home').fullpage({
+        //Scrolling
+        css3: true,
+        scrollingSpeed: 700,
+        autoScrolling: true,
+        fitToSection: true,
+        fitToSectionDelay: 1000,
+        scrollBar: true,
+        easing: 'easeInOutCubic',
+        easingcss3: 'ease',
+        loopBottom: false,
+        loopTop: false,
+        loopHorizontal: true,
+        continuousVertical: false,
+        normalScrollElements: '.landing',
+        scrollOverflow: false,
+        touchSensitivity: 15,
+        normalScrollElementTouchThreshold: 5,
+
+        //Accessibility
+        keyboardScrolling: true,
+        animateAnchor: true,
+        recordHistory: true,
+
+        //Design
+        controlArrows: true,
+        verticalCentered: true,
+        resize : false,
+        sectionsColor : ['#ccc', '#fff'],
+        paddingTop: '5%',
+        paddingBottom: '10px',
+        fixedElements: '#header',
+        responsiveWidth: 0,
+        responsiveHeight: 0,
+
+        //Custom selectors
+        sectionSelector: '.section',
+        slideSelector: '.slide',
+
+        //events
+        onLeave: function(index, nextIndex, direction){},
+        afterLoad: function(anchorLink, index){},
+        afterRender: function(){},
+        afterResize: function(){},
+        afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+        onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
+      });
+    });
+
+    console.log(angular.element(document));
+  }
+
+  ng.module('talleresPossa')
+    .controller('HomeCtrl', HomeCtrl);
 })(angular);
 
 /*!

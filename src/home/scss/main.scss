@@ -34,8 +34,48 @@
 
     &:last-child {
       >div {
-        height: 100%;
         padding-top: 5%;
+        position: relative;
+
+        >div, sr-footer {
+          height: 50%;
+          position: absolute;
+          top: 5%;
+        }
+
+        >div {
+          background: rgba(255, 255, 255, 0.62);
+          border-radius: 10px;
+          color: black;
+          padding-top: 2%;
+          margin: 0 1%;
+          width: 96%;
+
+          .personal-info {
+            position: relative;
+            margin-bottom: 10px;
+            div {
+              &:first-child {
+                padding: 0;
+
+                img {
+                  border: 2px solid black;
+                  border-radius: 100%;
+                  margin-bottom: 10px;
+                }
+              }
+
+              &:last-child {
+                position: absolute;
+                right: 0;
+              }
+            }
+          }
+        }
+
+        sr-footer{
+          top: 55%;
+        }
 
         .foot-bar {
           border-top: 0;

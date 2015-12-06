@@ -1,9 +1,10 @@
 (function (ng) {
   'use strict';
 
-  var HomeCtrl = function ($state, $scope) {
+  var HomeCtrl = function ($state, $scope, $location) {
     this._$state = $state;
     this._$scope = $scope;
+    this._$location = $location;
 
     this.stylesHome();
     this.scrollPage();
@@ -22,18 +23,13 @@
   }
 
   HomeCtrl.prototype.scrollPage = function() {
+
     // Start the fullPage plugin
     angular.element(document).ready(function() {
       $('#fullpage-home').fullpage({
-        //Navigation
-        menu: '#menu',
-        lockAnchors: false,
-        navigation: false,
-        navigationPosition: 'right',
-        navigationTooltips: ['firstSlide', 'secondSlide'],
-        showActiveTooltip: false,
-        slidesNavigation: false,
-        slidesNavPosition: 'bottom',
+        // Navigation
+    		lockAnchors: false,
+    		anchors:['home', 'about', 'contact', 'footer'],
 
         //Scrolling
         css3: true,
@@ -63,7 +59,7 @@
         verticalCentered: true,
         resize : false,
         sectionsColor : ['#ccc', '#fff'],
-        paddingTop: '3em',
+        paddingTop: '5%',
         paddingBottom: '10px',
         fixedElements: '#header',
         responsiveWidth: 0,

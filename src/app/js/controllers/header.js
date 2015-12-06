@@ -1,9 +1,10 @@
 (function (ng) {
   'use strict';
 
-  var HeaderCtrl = function ($state, $scope) {
+  var HeaderCtrl = function ($state, $scope, $location) {
     this._$state = $state;
     this._$scope = $scope;
+    this._$location = $location;
 
     this.stateSelected();
   };
