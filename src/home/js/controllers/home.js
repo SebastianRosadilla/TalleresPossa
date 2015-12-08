@@ -1,13 +1,16 @@
 (function (ng) {
   'use strict';
 
-  var HomeCtrl = function ($state, $scope, $location) {
+  var HomeCtrl = function ($state, $scope, $location, $rootScope) {
     this._$state = $state;
     this._$scope = $scope;
     this._$location = $location;
 
     this.stylesHome();
     this.scrollPage();
+
+    //FIXME trouble whit jQuery
+    $rootScope.notHome = true;
   };
 
   HomeCtrl.prototype.stylesHome = function() {
@@ -23,13 +26,17 @@
   }
 
   HomeCtrl.prototype.scrollPage = function() {
+    var $scope = this._$scope,
+        $state = this._$state;
 
     // Start the fullPage plugin
     angular.element(document).ready(function() {
       $('#fullpage-home').fullpage({
         // Navigation
-    		lockAnchors: false,
-    		anchors:['home', 'about', 'contact', 'footer'],
+    		lockAnchors: true,
+    		anchors:['main', 'about', 'contact', 'footer'],
+        slidesNavigation: true,
+        slidesNavPosition: 'bottom',
 
         //Scrolling
         css3: true,
@@ -40,8 +47,8 @@
         scrollBar: true,
         easing: 'easeInOutCubic',
         easingcss3: 'ease',
-        loopBottom: false,
-        loopTop: false,
+        loopBottom: true,
+        loopTop: true,
         loopHorizontal: true,
         continuousVertical: false,
         normalScrollElements: '.landing',
@@ -70,7 +77,34 @@
         slideSelector: '.slide',
 
         //events
-        onLeave: function(index, nextIndex, direction){},
+        onLeave: function(index, nextIndex, direction){
+          var header = document.getElementsByClassName('navbar-fixed-top')[0],
+              parentElemetns = document.getElementsByClassName('menu')[0],
+              elements = [parentElemetns.firstChild.nextSibling],
+              currentIndex = (direction == 'down') ? nextIndex-- : nextIndex++,
+              colors = ['rgba(202, 37, 37, 0.88)',
+                        'rgba(0, 131, 194, 0.88)',
+                        'rgba(194, 0, 0, 0.7)'];
+
+          header.style.transition = '700';
+
+          var iter = 0;
+          while(elements[iter].nextSibling.nextSibling != null) {
+            elements.push(elements[iter].nextSibling.nextSibling);
+            iter++;
+          }
+          if (currentIndex < 4) {
+            for (var i = 0; i < elements.length; i++) {
+              elements[i].classList.remove('select');
+            }
+            elements[currentIndex - 1].classList.add('select');
+            header.style.background = colors[currentIndex - 1];
+            header.classList.remove('hidden');
+          } else {
+            elements[2].classList.remove('select');
+            header.classList.add('hidden');
+          }
+        },
         afterLoad: function(anchorLink, index){},
         afterRender: function(){},
         afterResize: function(){},

@@ -11,7 +11,7 @@
     .config(function($stateProvider, $urlRouterProvider) {
       $stateProvider
         .state('landing', {
-          url: '',
+          url: '/',
           views: {
             main: {
               templateUrl: 'app/templates/landing.html',
