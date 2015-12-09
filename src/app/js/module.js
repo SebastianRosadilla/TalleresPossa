@@ -25,5 +25,11 @@
         templateUrl: 'app/templates/footer.html',
         restrict: 'E'
       }
+    })
+    .directive('srFormulario', function() {
+      return {
+        templateUrl: 'app/templates/formulario.html',
+        restric: 'AE'
+      }
     });
 })(angular);

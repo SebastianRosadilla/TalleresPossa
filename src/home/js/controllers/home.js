@@ -82,12 +82,14 @@
               parentElemetns = document.getElementsByClassName('menu')[0],
               elements = [parentElemetns.firstChild.nextSibling],
               currentIndex = (direction == 'down') ? nextIndex-- : nextIndex++,
+              // Header colors
               colors = ['rgba(202, 37, 37, 0.88)',
                         'rgba(0, 131, 194, 0.88)',
-                        'rgba(194, 0, 0, 0.7)'];
+                        'rgba(194, 0, 0, 0.7)'],
+              // Container whit effect then scrolling
+              scrolleffect = document.getElementsByClassName('section');
 
-          header.style.transition = '700';
-
+          // Obtain the menu elements
           var iter = 0;
           while(elements[iter].nextSibling.nextSibling != null) {
             elements.push(elements[iter].nextSibling.nextSibling);
@@ -104,6 +106,36 @@
             elements[2].classList.remove('select');
             header.classList.add('hidden');
           }
+
+          // Add the scroll-effects
+          for (var i = 0; i < scrolleffect.length; i++) {
+            scrolleffect[i] = scrolleffect[i].firstChild;
+            // Horizontal appear
+            // scrolleffect[i].style.transition = 'transform 1s ease-in-out';
+
+            // Horizontal appear combinate
+            // scrolleffect[i].style.transform = 'translateX(100%)';
+            // Horizontal appear
+            // if (direction == 'down') {
+            //   scrolleffect[i].style.transform = 'translateX(100%)';
+            // } else {
+            //   scrolleffect[i].style.transform = 'translateX(-100%)';
+            // }
+
+            // Rotate
+            // scrolleffect[i].style.transition = 'transform 1s ease-in-out';
+            // scrolleffect[i].style.transform = 'rotateZ(180deg)';
+
+            // Appear
+            scrolleffect[i].style.transition = 'opacity 1s ease-in-out';
+            scrolleffect[i].style.opacity = '0';
+          }
+          // Horizontal Appear
+          // scrolleffect[currentIndex - 1].style.transform = 'translateX(0)';
+          // Rotate
+          // scrolleffect[currentIndex - 1].style.transform = 'rotateZ(0)';
+          // Appear
+          scrolleffect[currentIndex - 1].style.opacity = '1';
         },
         afterLoad: function(anchorLink, index){},
         afterRender: function(){},

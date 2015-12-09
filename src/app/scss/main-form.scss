@@ -1,0 +1,39 @@
+.form {
+  background: rgba(131, 143, 125, 0.75);
+  border-radius: 10px;
+  height: 90%;
+  width: 100%;
+
+  >div {
+    height: 100%;
+
+    h3 {
+      color: white;
+      font-weight: bold;
+    }
+
+    >div {
+      margin-bottom: 1%;
+
+      &.description {
+        height: 45%;
+        textarea {
+          height: 100%;
+        }
+      }
+    }
+
+    &:last-child {
+      box-sizing: border-box;
+      border-left: 5px dashed black;
+      >div {
+        // background: rgba(0, 0, 0, 0.5);
+        // border: 1px dashed black;
+        // border-radius: 15px;
+        height: 90%;
+        margin: 5% 5%;
+        width: 90%;
+      }
+    }
+  }
+}

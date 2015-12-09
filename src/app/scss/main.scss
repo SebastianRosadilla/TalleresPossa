@@ -1,5 +1,9 @@
   html, body {
   height: 100%;
+  // Hidde the scroll bar on chrome
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .main {

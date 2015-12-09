@@ -5,22 +5,24 @@
 
   <div class="container col-xs-6">
     <ul class="nav col-xs-12 menu">
-      <li role="presentation" class="col-xs-4 select">
+      <li role="presentation" class="col-xs-4 select"
+          ng-click="header.stateSelected('home')">
         <p>
           <span class="glyphicon glyphicon-home">
           </span> HOME
         </p>
       </li>
-      <li role="presentation" class="col-xs-4">
+      <li role="presentation" class="col-xs-4"
+          ng-click="header.stateSelected('about')">
         <p>
           <span class="glyphicon glyphicon-briefcase">
           </span> ABOUT US
         </p>
       </li>
-      <li role="presentation" class="col-xs-4">
+      <li role="presentation" class="col-xs-4"
+          ng-click="header.stateSelected('contact')">
         <p>
-          <span class="glyphicon glyphicon-user"
-               ng-click="header.stateSelected()">
+          <span class="glyphicon glyphicon-user">
           </span> CONTACT US
         </p>
       </li>
