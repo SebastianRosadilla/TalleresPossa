@@ -1,0 +1,39 @@
+.register {
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  >div {
+    border: 1px solid black;
+    background: rgba(255, 255, 255, 0.7);
+    height: 80%;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 10%;
+    width: 80%;
+
+    .btn{
+      background: rgba(197, 200, 195, 0.56);
+      border: 1px solid black;
+    }
+
+    >div {
+      height: 10%;
+    }
+
+    >div:nth-child(2) {
+      height: 80%;
+      >div {
+        height: 10%;
+      }
+
+      .description {
+        height: 50%;
+        textarea {
+          height: 100%;
+        }
+      }
+    }
+  }
+}

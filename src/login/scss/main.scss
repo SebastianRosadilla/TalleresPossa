@@ -1,0 +1,21 @@
+.login {
+  height: 100%;
+  position: relative;
+  >div {
+    border: 1px solid black;
+    background: rgba(255, 255, 255, 0.7);
+    // border-radius: 15px;
+    box-shadow: 2px 2px 8px;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+
+    >div {
+      height: 30%;
+
+      &:first-child, &:last-child {
+          height: 20%;
+        }
+    }
+  }
+}

@@ -4,7 +4,8 @@
   var dependencies = [
     'ui.router',
     'ngResource',
-    'home'
+    'home',
+    'login'
   ];
 
   ng.module('talleresPossa', dependencies)

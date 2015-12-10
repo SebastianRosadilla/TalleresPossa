@@ -7,7 +7,7 @@ var gulp = require('gulp'),
  */
 var FILES = {
   SRC: {
-    JS: ['src/**/js/**/*.js', 'src/**/js/*.js', 'src/extra/*.*',
+    JS: ['src/**/js/**/*.js', 'src/**/js/*.js',
          'bower_components/bootstrap/dist/js/bootstrap.min.js'],
     SCSS: ['src/**/scss/*.*', 'src/**/scss/**/*.*',
            'bower_components/bootstrap/dist/css/bootstrap.min.css',
