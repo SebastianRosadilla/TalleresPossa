@@ -7,6 +7,10 @@
     this._$location = $location;
   };
 
+  LoginCtrl.prototype.validation = function(type) {
+    
+  }
+
   ng.module('talleresPossa')
     .controller('LoginCtrl', LoginCtrl);
 })(angular);

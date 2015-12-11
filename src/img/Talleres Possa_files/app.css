@@ -71,7 +71,7 @@ html, body {
       text-align: center; }
 
 .home > div:first-child {
-  background-image: url("../img/Fondo3.png"); }
+  background-image: url("../img/Fondo3.jpg"); }
   .home > div:first-child > div {
     background: white;
     border: 1px solid gray;
@@ -85,13 +85,13 @@ html, body {
       height: 50%; }
 
 .home > div:nth-child(2) {
-  background-image: url("../img/Fondo1.png");
+  background-image: url("../img/Fondo1.jpg");
   box-sizing: border-box; }
   .home > div:nth-child(2) > div {
     opacity: 0.6; }
 
 .home > div:nth-child(3) {
-  background-image: url("../img/Fondo2.png"); }
+  background-image: url("../img/Fondo2.jpg"); }
 
 .home > div:last-child > div {
   padding-top: 5%;

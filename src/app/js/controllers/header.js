@@ -16,9 +16,6 @@
         // scroll that need
         scrollY = height * sections.indexOf(sect);
 
-        console.log(scrollY);
-        console.log(height);
-
         if (scrollY >= - 1) {
           // window.scrollTo(0, scrollY);
           $("body").animate({

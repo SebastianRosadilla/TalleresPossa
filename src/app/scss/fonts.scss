@@ -1,0 +1,41 @@
+@media screen and (max-width:1060px) {
+  span {
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  footer {
+    span {
+      font-size: 13px;
+    }
+  }
+}
+
+@media screen and (max-width:867px) {
+  h3 {
+    font-size: 15px !important;
+  }
+
+  h4 {
+    font-size: 14px !important;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  span {
+    font-size: 9px;
+    font-weight: bold;
+  }
+
+  footer {
+    span {
+      font-size: 10px;
+    }
+  }
+}

@@ -1,29 +1,34 @@
 <nav class="container-fluid navbar navbar-fixed-top">
-  <div class="container col-xs-6" ui-sref="landing">
+  <div class="container
+              col-xs-4 col-sm-6" ui-sref="landing">
     <h3>TALLERES POSSA</h3>
   </div>
 
-  <div class="container col-xs-6">
+  <div class="container
+              col-xs-8 col-sm-6">
     <ul class="nav col-xs-12 menu">
       <li role="presentation" class="col-xs-4 select"
           ng-click="header.stateSelected('home')">
         <p>
           <span class="glyphicon glyphicon-home">
-          </span> HOME
+          </span>
+          <span> HOME</span>
         </p>
       </li>
       <li role="presentation" class="col-xs-4"
           ng-click="header.stateSelected('about')">
         <p>
           <span class="glyphicon glyphicon-briefcase">
-          </span> ABOUT US
+          </span>
+          <span> ABOUT</span>
         </p>
       </li>
       <li role="presentation" class="col-xs-4"
           ng-click="header.stateSelected('contact')">
         <p>
           <span class="glyphicon glyphicon-user">
-          </span> CONTACT US
+          </span>
+          <span> CONTACT</span>
         </p>
       </li>
     </ul>

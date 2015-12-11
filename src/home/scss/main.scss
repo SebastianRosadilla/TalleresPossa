@@ -1,7 +1,7 @@
 .home {
   >div {
     &:first-child {
-      background-image: url('../img/Fondo1.png');
+      background-image: url('../img/Fondo1.jpg');
 
       >div {
         background: rgba(255, 255, 255, 0.40);
@@ -20,7 +20,7 @@
     }
 
     &:nth-child(2) {
-      background-image: url('../img/Fondo3.png');
+      background-image: url('../img/Fondo3.jpg');
       box-sizing: border-box;
       width: 100%;
 
@@ -30,7 +30,7 @@
     }
 
     &:nth-child(3) {
-      background-image: url('../img/Fondo2.png');
+      background-image: url('../img/Fondo2.jpg');
     }
 
     &:last-child {

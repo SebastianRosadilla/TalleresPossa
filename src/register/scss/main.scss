@@ -20,6 +20,14 @@
 
     >div {
       height: 10%;
+
+      &:first-child {
+        height: 12%;
+      }
+
+      &:last-child {
+        height: 8%;
+      }
     }
 
     >div:nth-child(2) {
