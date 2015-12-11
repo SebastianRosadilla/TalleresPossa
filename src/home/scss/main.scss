@@ -2,13 +2,19 @@
   >div {
     &:first-child {
       background-image: url('../img/Fondo1.jpg');
+      position: relative;
 
       >div {
         background: rgba(255, 255, 255, 0.40);
         border: 1px solid gray;
         border-radius: 10px;
+        bottom: 10%;
         box-sizing: border-box;
-        padding: 1%;
+        height: 85% !important;
+        left: 1%;
+        top: 10%;
+        position: absolute;
+        width: 98%;
         >div {
           height: 100%;
           div {
@@ -34,52 +40,33 @@
     }
 
     &:last-child {
+      position: relative;
+      // Footer
       >div {
-        padding-top: 5%;
-        position: relative;
-
-        >div, sr-footer {
-          height: 50%;
-          position: absolute;
-          top: 5%;
-        }
 
         >div {
-          background: rgba(255, 255, 255, 0.62);
-          border-radius: 10px;
-          color: black;
-          padding-top: 2%;
-          margin: 0 1%;
-          width: 96%;
+          height: 50%;
 
-          .personal-info {
-            position: relative;
-            margin-bottom: 10px;
-            div {
-              &:first-child {
-                padding: 0;
+          // Columns client information
+          >div {
+            height: 95%;
+            // first column
+            &:first-child {
+              >div {
+                >div {
+                  &:first-child {
+                    padding-top: 1%;
 
-                img {
-                  border: 2px solid black;
-                  border-radius: 100%;
-                  margin-bottom: 10px;
+                    img {
+                      border-radius: 100%;
+                      height: 100%;
+                      width: 100%;
+                    }
+                  }
                 }
-              }
-
-              &:last-child {
-                position: absolute;
-                right: 0;
               }
             }
           }
-        }
-
-        sr-footer{
-          top: 55%;
-        }
-
-        .foot-bar {
-          border-top: 0;
         }
       }
     }

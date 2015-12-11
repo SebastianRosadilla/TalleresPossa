@@ -24,13 +24,19 @@
     .directive('srFooter', function() {
       return {
         templateUrl: 'app/templates/footer.html',
-        restrict: 'E'
+        restrict: 'AE'
       }
     })
     .directive('srFormulario', function() {
       return {
         templateUrl: 'app/templates/formulario.html',
         restric: 'AE'
+      }
+    })
+    .directive('srGallery', function() {
+      return {
+        templateUrl: 'app/templates/gallery.html',
+        restrict: 'AE'
       }
     });
 })(angular);

@@ -2,37 +2,64 @@
   background: rgba(131, 143, 125, 0.75);
   border-radius: 10px;
   height: 90%;
+  position: relative;
   width: 100%;
 
   >div {
-    height: 100%;
+    box-sizing: border-box;
+    height: 98%;
+    top: 1%;
+    padding-bottom: 1%;
+    position: absolute;
 
-    h3 {
-      color: white;
-      font-weight: bold;
-    }
+    // Form container
+    &:first-child {
+      left: 1%;
 
-    >div {
-      margin-bottom: 1%;
+      >div {
+        // Title container
+        &:first-child {
+          height: 15%;
 
-      &.description {
-        height: 45%;
-        textarea {
-          height: 100%;
+          h3 {
+            font-weight: bold;
+          }
+        }
+
+        // Fields container
+        &:last-child {
+          height: 85%;
+
+          >div {
+            height: 12%;
+
+            // Description container
+            &.description {
+              height: 40%;
+
+              textarea {
+                height: 100%;
+              }
+            }
+          }
         }
       }
     }
 
+    // Info container
     &:last-child {
-      box-sizing: border-box;
-      border-left: 5px dashed black;
+      border-left: 6px dashed black;
+      right: 1%;
+
       >div {
-        // background: rgba(0, 0, 0, 0.5);
-        // border: 1px dashed black;
-        // border-radius: 15px;
-        height: 90%;
-        margin: 5% 5%;
-        width: 90%;
+        height: 70%;
+
+        // Map container
+        &:last-child {
+          box-sizing: border-box;
+          height: 30%;
+          padding-top: 5%;
+        }
       }
     }
   }
