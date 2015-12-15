@@ -108,8 +108,10 @@
           }
 
           // Add the scroll-effects
+          var son = [];
           for (var i = 0; i < scrolleffect.length; i++) {
-            scrolleffect[i] = scrolleffect[i].firstChild;
+            son.push(scrolleffect[i].firstChild);
+
             // Horizontal appear
             // scrolleffect[i].style.transition = 'transform 1s ease-in-out';
 
@@ -127,15 +129,15 @@
             // scrolleffect[i].style.transform = 'rotateZ(180deg)';
 
             // Appear
-            scrolleffect[i].style.transition = 'opacity 1s ease-in-out';
-            scrolleffect[i].style.opacity = '0';
+            son[i].style.transition = 'opacity 1s ease-in-out';
+            son[i].style.opacity = '0';
           }
           // Horizontal Appear
           // scrolleffect[currentIndex - 1].style.transform = 'translateX(0)';
           // Rotate
           // scrolleffect[currentIndex - 1].style.transform = 'rotateZ(0)';
           // Appear
-          scrolleffect[currentIndex - 1].style.opacity = '1';
+          son[currentIndex - 1].style.opacity = '1';
         },
         afterLoad: function(anchorLink, index){},
         afterRender: function(){},
