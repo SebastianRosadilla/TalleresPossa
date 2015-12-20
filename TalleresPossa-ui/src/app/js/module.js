@@ -26,17 +26,5 @@
         templateUrl: 'app/templates/footer.html',
         restrict: 'AE'
       }
-    })
-    .directive('srFormulario', function() {
-      return {
-        templateUrl: 'app/templates/formulario.html',
-        restric: 'AE'
-      }
-    })
-    .directive('srGallery', function() {
-      return {
-        templateUrl: 'app/templates/gallery.html',
-        restrict: 'AE'
-      }
     });
 })(angular);

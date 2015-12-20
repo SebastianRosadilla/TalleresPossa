@@ -1,7 +1,7 @@
 (function (ng) {
   'use strict';
 
-  var HeaderCtrl = function ($state, $scope, $location) {
+  var HeaderCtrl = function ($state, $scope, $location, $http) {
     this._$state = $state;
     this._$scope = $scope;
     this._$location = $location;

@@ -1,6 +1,6 @@
 <div class="register">
   <img src="img/Fondo4.jpg" alt="" width="100%" height="100%">
-  <div class="container col-xs-8">
+  <form class="container col-xs-8" action="http://localhost:8000/#/register" method="post">
     <!-- Title -->
     <div class="container col-xs-12">
         <h3>FICHA DE REGISTRO</h3>
@@ -88,9 +88,9 @@
       <div class="container col-xs-3 btn">
         <span>BORRAR</span>
       </div>
-      <div class="container col-xs-3 btn">
+      <button type="submit" class="container col-xs-3 btn">
         <span>ENVIAR</span>
-      </div>
+      </button>
       <div class="container col-xs-3 btn"
            ui-sref="home">
         <span>CONOCER</span>
@@ -100,5 +100,5 @@
         <span>VOLVER</span>
       </div>
     </div>
-  </div>
+  </form>
 </div>

@@ -18,7 +18,10 @@
   "homepage": "https://github.com/SebastianRosadilla/TalleresPossa#readme",
   "dependencies": {
     "bower": "^1.6.5",
-    "gulp": "^3.9.0"
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "browser-sync": "^2.9.12",

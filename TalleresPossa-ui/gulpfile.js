@@ -35,6 +35,7 @@ var FILES = {
 gulp.task('watch', ['js', 'scss', 'html'], function () {
   plugins.browserSync({
     server: { baseDir: 'build' },
+    port: 8100, 
     files: [
       FILES.DEST.JS,
       FILES.DEST.CSS,
