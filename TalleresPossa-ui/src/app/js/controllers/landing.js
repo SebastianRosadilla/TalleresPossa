@@ -10,6 +10,8 @@
       $rootScope.Home = false;
       window.location.reload();
     }
+
+    console.log(localStorage.length);
   };
 
   ng.module('talleresPossa')

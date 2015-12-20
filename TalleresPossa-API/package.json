@@ -4,7 +4,8 @@
   "description": "TalleresPossa company website",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/SebastianRosadilla/TalleresPossa#readme",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "bower": "^1.6.5",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
