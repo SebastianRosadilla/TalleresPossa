@@ -2,7 +2,7 @@ var fs = require('fs'),
     q = require('q'),
     connection = require('../bd/connection');
 
-function usersInfo(req, res) {
+function landing(req, res) {
   connection.allUsers().then(function (data) {
     var rows = data.rows,
         fields = data.fields;
@@ -17,4 +17,4 @@ function usersInfo(req, res) {
   });
 }
 
-module.exports.usersInfo = usersInfo;
+module.exports.landing = landing;

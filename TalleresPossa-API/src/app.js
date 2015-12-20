@@ -10,5 +10,5 @@ app.listen(port, function() {
 });
 
 app.get('/', function (req, res) {
-  getRequest.landing(req, res);
+  getRequest.usersInfo(req, res);
 })
