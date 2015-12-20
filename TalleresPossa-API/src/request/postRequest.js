@@ -20,7 +20,7 @@ function register(req, res) {
                       info.phone, info.email,
                       info.description);
 
-  res.end();
+  res.end('<h1>Su solicitud fue enviada con exito</h1>');
 }
 
 module.exports.login = login;

@@ -19,27 +19,36 @@
     }
 
     >div {
-      height: 10%;
+      box-sizing: border-box;
+      height: 80%;
+
+      hr {
+        border: 1px solid rgb(240, 173, 78);
+        margin: 1px 3% 10px 3%;
+      }
 
       &:first-child {
         height: 12%;
       }
 
+      // Input groups
+      &:nth-child(2) {
+        >div {
+          height: 10%;
+        }
+
+        .description {
+          height: 50%;
+          textarea {
+            height: 100%;
+          }
+        }
+      }
+
       &:last-child {
         height: 8%;
-      }
-    }
-
-    >div:nth-child(2) {
-      height: 80%;
-      >div {
-        height: 10%;
-      }
-
-      .description {
-        height: 50%;
-        textarea {
-          height: 100%;
+        >div {
+          max-height: 100%;
         }
       }
     }
