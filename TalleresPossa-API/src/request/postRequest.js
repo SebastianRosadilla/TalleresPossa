@@ -1,5 +1,5 @@
-var fs = require('fs'),
-    q = require('q'),
+var q = require('q'),
+    sendEmail = require('../email/sendEmail'),
     connection = require('../bd/connection');
 
 function login(req, res) {
@@ -23,5 +23,11 @@ function register(req, res) {
   res.end('<h1>Su solicitud fue enviada con exito</h1>');
 }
 
+function email(req, res) {
+  sendEmail.sendEmail(req, res);
+}
+
+
 module.exports.login = login;
 module.exports.register = register;
+module.exports.email = email;

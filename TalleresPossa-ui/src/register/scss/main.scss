@@ -29,6 +29,18 @@
 
       &:first-child {
         height: 12%;
+
+        >div {
+          float: left;
+          width: 50%;
+
+          // error container
+          &:last-child {
+            float: right;
+            margin-top: 20px;
+            text-align: center;
+          }
+        }
       }
 
       // Input groups
@@ -48,6 +60,7 @@
       &:last-child {
         height: 8%;
         >div {
+          margin-bottom: 2%;
           max-height: 100%;
         }
       }

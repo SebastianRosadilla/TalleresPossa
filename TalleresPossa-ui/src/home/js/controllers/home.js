@@ -5,6 +5,13 @@
     this._$state = $state;
     this._$scope = $scope;
     this._$location = $location;
+    this.err = 'Talleres Possa S.A';
+    this.formElements = {
+      name: '', company: '',
+      number: '', fax: '',
+      phone: '', email: '',
+      subject: '', description: ''
+    }
 
     this.stylesHome();
     this.scrollPage();
@@ -40,7 +47,7 @@
 
         //Scrolling
         css3: true,
-        scrollingSpeed: 700,
+        scrollingSpeed: 600,
         autoScrolling: true,
         fitToSection: true,
         fitToSectionDelay: 1000,
@@ -106,39 +113,6 @@
             elements[2].classList.remove('select');
             header.classList.add('hidden');
           }
-
-          // Add the scroll-effects
-          // var son = [];
-          // for (var i = 0; i < scrolleffect.length; i++) {
-          //   son.push(scrolleffect[i].firstChild);
-
-            // Horizontal appear
-            // scrolleffect[i].style.transition = 'transform 1s ease-in-out';
-
-            // Horizontal appear combinate
-            // scrolleffect[i].style.transform = 'translateX(100%)';
-            // Horizontal appear
-            // if (direction == 'down') {
-            //   scrolleffect[i].style.transform = 'translateX(100%)';
-            // } else {
-            //   scrolleffect[i].style.transform = 'translateX(-100%)';
-            // }
-
-            // Rotate
-            // scrolleffect[i].style.transition = 'transform 1s ease-in-out';
-            // scrolleffect[i].style.transform = 'rotateZ(180deg)';
-
-            // Appear
-            // son[i].style.transition = 'opacity 1s ease-in-out';
-            // son[i].style.opacity = '0';
-            //
-            // // Horizontal Appear
-            // // scrolleffect[currentIndex - 1].style.transform = 'translateX(0)';
-            // // Rotate
-            // // scrolleffect[currentIndex - 1].style.transform = 'rotateZ(0)';
-            // // Appear
-            // son[currentIndex - 1].style.opacity = '1';
-          // }
         },
         afterLoad: function(anchorLink, index){},
         afterRender: function(){},
@@ -149,6 +123,74 @@
     });
   }
 
+  HomeCtrl.prototype.validation = function() {
+    var formElements = this.formElements,
+        $scope = this,
+        checkEmpty = false,
+        mins = {
+          name: (8 - formElements.name.length > 0) ? 8 - formElements.name.length : 0 ,
+          email: (13 - formElements.email.length > 0) ? 13 - formElements.email.length : 0,
+          subject: (4 - formElements.subject.length > 0) ? 4 - formElements.subject.length : 0,
+          description: (50 - formElements.description.length > 0) ? 50 - formElements.description.length : 0
+        };
+
+    // check if some field is different to empty
+    for (var i in formElements) {
+      checkEmpty = formElements[i] != '' | checkEmpty
+    }
+
+    if (checkEmpty)
+      // check the min length to required fields
+      if (formElements.name.length >= 8 && formElements.email.length >= 13
+          && formElements.subject.length >= 4 && formElements.description.length >= 50)
+          // // email validation
+         if (/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/.test(formElements.email))
+          //   // number validation
+            if (formElements.number != '' && formElements.phone != '')
+              if (/^\+?(\d{1,3})?[- .]?\d+$/.test(formElements.phone) && /^\+?(\d{1,3})?[- .]?\d+$/.test(formElements.number))
+                return true
+              else
+                $scope.err = 'Telefono o Celular invalido'
+            else
+              // tel validation when phone is empty
+              if (formElements.number != '')
+                if (/^\+?(\d{1,3})?[- .]?\d+$/.test(formElements.number)) {
+                  $scope.err = 'Talleres Possa S.A'
+                  return true
+                }
+                else
+                  $scope.err = 'Telefono invalido'
+              else
+                // phone validation when tel is empty
+                if (formElements.phone != '')
+                  if (/^\+?(\d{1,3})?[- .]?\d+$/.test(formElements.phone)) {
+                    $scope.err = 'Talleres Possa S.A'
+                    return true
+                  }
+                  else
+                    $scope.err = 'Celular invalido'
+                // both are empty
+                else  {
+                    $scope.err = 'Talleres Possa S.A'
+                    return true;
+                }
+          else
+            $scope.err = 'Email invalido';
+      else
+        $scope.err = 'Campos obligatorios: Nombre (min ' + mins.name +'+), Email (min ' + mins.email + '+), '
+              + 'Asunto (min ' + mins.subject + '+)  y Descripcion (min ' + mins.description + '+)';
+    else
+      $scope.err = 'Talleres Possa S.A';
+
+    return false;
+  }
+
+  HomeCtrl.prototype.deleteAllForm = function() {
+    var formElements = this.formElements;
+    for (var i in formElements) {
+      formElement[i] = '';
+    }
+  }
   ng.module('talleresPossa')
     .controller('HomeCtrl', HomeCtrl);
 })(angular);

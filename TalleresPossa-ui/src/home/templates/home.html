@@ -223,7 +223,7 @@
 
   <!-- Contact us container -->
   <div class="container col-xs-12 section" id="contactPage">
-    <form action="/#/home" class="form" method="post">
+    <form action="http://localhost:8000/email" class="form" method="post">
       <div class="container col-xs-8">
         <!-- Title -->
         <div class="container col-xs-12">
@@ -236,15 +236,19 @@
             <!-- Name -->
             <div class="container col-xs-6">
               <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                <input class="form-control" type="text" name="name" value="" placeholder="Nombre...">
+                <label for="name" class="input-group-addon"><span class="glyphicon glyphicon-user"></span></label>
+                <input class="form-control" type="text"
+                       name="name" value="" id="name"
+                       ng-model="home.formElements.name" placeholder="Nombre...">
               </div>
             </div>
             <!-- Company -->
             <div class="container col-xs-6">
               <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
-                <input class="form-control" type="text" name="company" value="" placeholder="Empresa...">
+                <label for="company" class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></label>
+                <input class="form-control" type="text"
+                       name="company" value="" id="company"
+                       ng-model="home.formElements.company" placeholder="Empresa...">
               </div>
             </div>
           </div>
@@ -253,15 +257,19 @@
             <!-- Number -->
             <div class="container col-xs-6">
               <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
-                <input class="form-control" type="text" name="number" value="" placeholder="Telefono...">
+                <label for="number" class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></label>
+                <input class="form-control" type="text"
+                       name="number" value="" id="number"
+                       ng-model="home.formElements.number" placeholder="Telefono...">
               </div>
             </div>
             <!-- Fax -->
             <div class="container col-xs-6">
               <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-print"></span></span>
-                <input class="form-control" type="text" name="Fax" value="" placeholder="Fax...">
+                <label for="fax" class="input-group-addon"><span class="glyphicon glyphicon-print"></span></label>
+                <input class="form-control" type="text"
+                       name="fax" value="" id="fax"
+                       ng-model="home.formElements.fax" placeholder="Fax...">
               </div>
             </div>
           </div>
@@ -270,15 +278,19 @@
             <!-- Number phone  -->
             <div class="container col-xs-6">
               <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-                <input class="form-control" type="text" name="Phone" value="" placeholder="Celular...">
+                <label for="phone" class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></label>
+                <input class="form-control" type="text"
+                       name="phone" value="" id="phone"
+                       ng-model="home.formElements.phone" placeholder="Celular...">
               </div>
             </div>
             <!-- Email -->
             <div class="container col-xs-6">
               <div class="input-group">
-                <span class="input-group-addon">@</span>
-                <input class="form-control" type="text" name="Email" value="" placeholder="Correo electronico...">
+                <label for="email" class="input-group-addon">@</label>
+                <input class="form-control" type="text"
+                       name="email" value="" id="email"
+                       ng-model="home.formElements.email" placeholder="Correo electronico...">
               </div>
             </div>
           </div>
@@ -286,25 +298,36 @@
           <!-- Subject -->
           <div class="container col-xs-12">
             <div class=" container col-xs-12 input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-              <input class="form-control" type="text" name="Subject" value="" placeholder="Asunto...">
+              <label for="subject" class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></label>
+              <input class="form-control" type="text"
+                     name="subject" value="" id="subject"
+                     ng-model="home.formElements.subject" placeholder="Asunto...">
             </div>
           </div>
 
           <!-- Description -->
           <div class="container col-xs-12 description">
-            <textarea class="form-control vresize" name="Description" placeholder="Descripcion..."></textarea>
+            <textarea class="form-control vresize" name="description"
+                      ng-model="home.formElements.description" placeholder="Descripcion...">
+            </textarea>
           </div>
 
           <!-- Send button -->
           <div>
             <div class="container
-                        col-xs-3 col-sm-2">
-              <span class="btn btn-danger"><span>BORRAR</span></span>
+                        col-xs-3 col-sm-2"
+                  ng-click="home.deleteAllForm()">
+              <span class="btn btn-danger"><span>LIMPIAR</span></span>
             </div>
             <div class="container
                         col-xs-3 col-sm-2">
-              <button type="submit" class="btn btn-primary"><span>ENVIAR</span></button>
+              <button type="submit" class="btn btn-primary"
+                      ng-class="{'disable': !home.validation()}">
+                 <span>ENVIAR</span>
+               </button>
+            </div>
+            <div class="container col-xs-6">
+              <span>{{home.err}}</span>
             </div>
           </div>
         </div>

@@ -4,6 +4,12 @@
   ::-webkit-scrollbar {
     display: none;
   }
+
+  .disable {
+    background-color: gray;
+    color: gray;
+    pointer-events: none;
+  }
 }
 
 .main {

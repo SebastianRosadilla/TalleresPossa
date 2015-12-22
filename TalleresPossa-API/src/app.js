@@ -26,3 +26,7 @@ app.post('/login', function (req, res) {
 app.post('/register', function (req, res) {
   postRequest.register(req, res);
 })
+
+app.post('/email', function (req, res) {
+  postRequest.email(req, res);
+})

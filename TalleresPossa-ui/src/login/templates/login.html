@@ -17,8 +17,10 @@
       <div class="container input-group
                   col-xs-10 col-xs-offset-1
                   col-sm-6 col-sm-offset-3">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-        <input class="form-control" type="text" name="user" value="" placeholder="Usuario...">
+        <label for="user" class="input-group-addon"><span class="glyphicon glyphicon-user"></span></label>
+        <input ng-model="login.user" class="form-control"
+               type="text" name="user" id="user"
+               value="" placeholder="Usuario...">
       </div>
     </div>
 
@@ -32,8 +34,10 @@
       <div class="container input-group
                   col-xs-10 col-xs-offset-1
                   col-sm-6 col-sm-offset-3">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-        <input class="form-control" type="password" name="password" value="" placeholder="Contraseña...">
+        <label for="password" class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></label>
+        <input ng-model="login.password" class="form-control"
+               type="password" name="password" id="password"
+               value="" placeholder="Contraseña...">
       </div>
     </div>
 
@@ -46,7 +50,8 @@
            ui-sref="register">
         <span>REGISTRAR</span>
       </div>
-      <button type="submit" class="container col-xs-4 btn">
+      <button ng-class="{'disable': !login.validation()}" type="submit"
+              class="container col-xs-4 btn">
         <span>INGRESAR</span>
       </button>
       <div class="container btn
@@ -54,6 +59,7 @@
            ui-sref="landing">
         <span>VOLVER</span>
       </div>
+      <span>{{login.err}}</span>
     </div>
   </form>
 </div>
