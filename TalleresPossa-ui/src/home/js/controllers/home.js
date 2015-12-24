@@ -1,9 +1,10 @@
 (function (ng) {
   'use strict';
 
-  var HomeCtrl = function ($state, $scope, $location, $rootScope) {
+  var HomeCtrl = function ($state, $scope, $location, $rootScope, Auth) {
     this._$state = $state;
     this._$scope = $scope;
+    this.$Auth = Auth;
     this._$location = $location;
     this.err = 'Talleres Possa S.A';
     this.formElements = {
@@ -15,10 +16,41 @@
 
     this.stylesHome();
     this.scrollPage();
+    this.initForm();
 
     //FIXME trouble whit jQuery
     $rootScope.notHome = true;
   };
+
+  // Pre info on contact form
+  HomeCtrl.prototype.initForm = function() {
+    var formElements = this.formElements,
+        $Auth = this.$Auth;
+
+    $Auth.nameUser().then(function(data) {
+      formElements.name = data
+    })
+
+    $Auth.userCompany().then(function(data) {
+      formElements.company = data
+    })
+
+    $Auth.userTel().then(function(data) {
+      formElements.number = data
+    })
+
+    $Auth.userFax().then(function(data) {
+      formElements.fax = data
+    })
+
+    $Auth.userPhone().then(function(data) {
+      formElements.phone = data
+    })
+
+    $Auth.userEmail().then(function(data) {
+      formElements.email = data
+    })
+  }
 
   HomeCtrl.prototype.stylesHome = function() {
     var height = window.screen.height,

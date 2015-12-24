@@ -1,6 +1,9 @@
 var express = require('express'),
+    q = require('q'),
     app = express(),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    LocalStorage = require('node-localstorage').LocalStorage,
+    localStorage = new LocalStorage('./scratch'),
 
     getRequest = require('./request/getRequest'),
     postRequest = require('./request/postRequest'),
@@ -16,11 +19,18 @@ app.listen(port, function() {
 });
 
 app.get('/', function (req, res) {
-  getRequest.usersInfo(req, res);
-})
+  getRequest.usersInfo(req, res, localStorage.talleresPossaUser);
+});
+
+app.get('/signOut', function (req, res) {
+  localStorage.talleresPossaUser = '';
+  res.redirect('http://127.0.0.1:3000/#/')
+});
 
 app.post('/login', function (req, res) {
-  postRequest.login(req, res);
+  postRequest.login(req, res).then(function(user) {
+    localStorage.talleresPossaUser = user
+  })
 })
 
 app.post('/register', function (req, res) {

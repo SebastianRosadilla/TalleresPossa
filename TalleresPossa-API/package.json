@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/app.js"
+    "start": "nodemon ./src/app.js",
+    "debug": "node-inspector & nodemon --debug ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "gulp": "^3.9.0",
+    "node-localstorage": "^0.6.0",
     "nodemailer": "^1.10.0",
     "q": "^1.4.1"
   },

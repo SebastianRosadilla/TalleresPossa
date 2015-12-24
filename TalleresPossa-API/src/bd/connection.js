@@ -1,7 +1,7 @@
 var mysql = require('mysql'),
     q = require('q'),
     userConnection = {
-      host     : 'localhost',
+      host     : '127.0.0.1',
       user     : 'root',
       password : 'TalleresPossa2015?',
       database: 'TalleresPossa'
@@ -21,7 +21,15 @@ function currentDate() {
   return date
 }
 
-function allUsers() {
+function usersInfoDB(user) {
+  var query = '';
+
+  // When a ordinary user send a request
+  if (user)
+      query = 'SELECT * FROM `usuarios` WHERE `Usuario` = \'' + user + '\' LIMIT 0 , 30'
+  // When admin send a request
+  else
+      query = 'SELECT * FROM `usuarios` LIMIT 0 , 30'
   // Open the connection
      var connection = mysql.createConnection(userConnection),
          info,
@@ -34,7 +42,7 @@ function allUsers() {
     });
 
     // Obtein the information
-    connection.query('SELECT * FROM `usuarios` LIMIT 0 , 30', function(err, rows, fields) {
+    connection.query(query, function(err, rows, fields) {
       if (err) {
         deffered.reject(err);
         throw err;
@@ -112,6 +120,6 @@ function register(user, password, name, company, number, fax, phone, email, desc
   });
 }
 
-module.exports.allUsers = allUsers;
+module.exports.usersInfoDB = usersInfoDB;
 module.exports.login = login;
 module.exports.register = register;

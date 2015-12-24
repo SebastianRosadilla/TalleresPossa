@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp watch"
+    "start": "gulp watch",
+    "graphs": "cloc /home/seba/Escritorio/TalleresPossa/ && cloc /home/seba/Escritorio/TalleresPossa/ --exclude-dir=node_modules,bower_components"
   },
   "repository": {
     "type": "git",

@@ -35,7 +35,7 @@ function sendEmail(req, res) {
         return console.log(error);
       }
       console.log('Message sent: ' + info.response);
-      res.redirect(301, 'http://localhost:3000/#/');
+      res.redirect(301, 'http://127.0.0.1:3000/#/');
   });
 }
 

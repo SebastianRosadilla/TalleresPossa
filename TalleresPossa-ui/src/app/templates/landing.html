@@ -1,6 +1,18 @@
 <div class="container-fluid landing">
 
-  <h3 class="text-primary">WELCOME</h3>
+  <div class="container col-xs-12">
+    <div class="container col-xs-6">
+      <h3 class="text-primary">WELCOME</h3>
+    </div>
+
+    </form>
+    <form method="get" action="http://127.0.0.1:8000/signOut"
+          class="container col-xs-6
+                 text-right vertical-align"
+          ng-class={'hidden': landing.logged()}>
+        <button type="submit">Cerrar Session</button>
+    </form>
+  </div>
   <hr class="bg-primary">
 
   <!-- Center text -->

@@ -1,0 +1,20 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'run', 'graph' ]
+2 info using npm@2.14.9
+3 info using node@v0.12.8
+4 verbose node symlink /usr/bin/node
+5 verbose config Skipping project config: /home/seba/.npmrc. (matches userconfig)
+6 verbose stack Error: ENOENT, open '/home/seba/package.json'
+6 verbose stack     at Error (native)
+7 verbose cwd /home/seba/Escritorio/TalleresPossa
+8 error Linux 3.16.0-38-generic
+9 error argv "/usr/bin/node" "/usr/bin/npm" "run" "graph"
+10 error node v0.12.8
+11 error npm  v2.14.9
+12 error path /home/seba/package.json
+13 error code ENOENT
+14 error errno -2
+15 error enoent ENOENT, open '/home/seba/package.json'
+15 error enoent This is most likely not a problem with npm itself
+15 error enoent and is related to npm not being able to find a file.
+16 verbose exit [ -2, true ]
