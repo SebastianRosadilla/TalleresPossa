@@ -7,7 +7,12 @@
       var info,
           deffered = $q.defer();
 
-      $http.get('http://127.0.0.1:8000').success(function(data) {
+      $http({
+        url:'http://127.0.0.1:8000',
+        method: 'GET',
+        params: localStorage.TalleresPossaAuth
+      })
+      .success(function(data) {
         deffered.resolve(data);
       });
 

@@ -1,9 +1,10 @@
 (function (ng) {
   'use strict';
 
-  var HomeCtrl = function ($state, $scope, $location, $rootScope, Auth) {
+  var HomeCtrl = function ($state, $scope, $location, $rootScope, Auth, $http) {
     this._$state = $state;
     this._$scope = $scope;
+    this._$http = $http;
     this.$Auth = Auth;
     this._$location = $location;
     this.err = 'Talleres Possa S.A';
@@ -173,8 +174,8 @@
 
     if (checkEmpty)
       // check the min length to required fields
-      if (formElements.name.length >= 8 && formElements.email.length >= 13
-          && formElements.subject.length >= 4 && formElements.description.length >= 50)
+      if (formElements.name.length > 8 && formElements.email.length > 13
+          && formElements.subject.length > 4 && formElements.description.length > 50)
           // // email validation
          if (/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/.test(formElements.email))
           //   // number validation
@@ -220,9 +221,37 @@
   HomeCtrl.prototype.deleteAllForm = function() {
     var formElements = this.formElements;
     for (var i in formElements) {
-      formElement[i] = '';
+      formElements[i] = '';
     }
   }
+
+  HomeCtrl.prototype.send = function() {
+    var $http = this._$http,
+        $scope = this,
+        $location = this._$location,
+        formElements = this.formElements;
+
+    $http({
+      url: 'http://127.0.0.1:8000/email',
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: $.param({
+        name: formElements.name, company: formElements.company,
+        number: formElements.number, fax: formElements.fax,
+        phone: formElements.phone, email: formElements.email,
+        subject: formElements.subject, description: formElements.description
+      })
+    })
+    .success(function(res) {
+      if(res === 'ERROR AL ENVIAR LA INFORMACION')
+        alert('Problema al enviar tu solcitud, Por favor intenta nuevamente')
+      else
+        alert('Enviado correctamente')
+        
+      $scope.deleteAllForm();
+    });
+  }
+
   ng.module('talleresPossa')
     .controller('HomeCtrl', HomeCtrl);
 })(angular);

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./src/app.js",
-    "debug": "node-inspector & nodemon --debug ./src/app.js"
+    "debug": "node-inspector & nodemon --debug-brk ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "gulp": "^3.9.0",
-    "node-localstorage": "^0.6.0",
     "nodemailer": "^1.10.0",
     "q": "^1.4.1"
   },
@@ -35,6 +34,8 @@
     "gulp-load-plugins": "^1.1.0",
     "gulp-minify": "0.0.5",
     "gulp-sass": "^2.1.0",
+    "jwt-simple": "^0.4.0",
+    "moment": "^2.10.6",
     "mysql": "^2.10.0",
     "node-sass": "^3.4.1"
   }

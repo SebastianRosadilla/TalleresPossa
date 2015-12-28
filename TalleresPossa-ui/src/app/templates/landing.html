@@ -5,13 +5,13 @@
       <h3 class="text-primary">WELCOME</h3>
     </div>
 
-    </form>
-    <form method="get" action="http://127.0.0.1:8000/signOut"
-          class="container col-xs-6
+    <div class="container col-xs-6
                  text-right vertical-align"
-          ng-class={'hidden': landing.logged()}>
-        <button type="submit">Cerrar Session</button>
-    </form>
+          ng-click="landing.closeSession()"
+          ng-class="{'hidden': landing.logged()}">
+        {{landing.userInfo.Usuario}}
+        <span>(Cerrar Session)</span>
+    </div>
   </div>
   <hr class="bg-primary">
 

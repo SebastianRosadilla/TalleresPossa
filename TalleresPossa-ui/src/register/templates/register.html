@@ -1,6 +1,6 @@
 <div class="register">
   <img src="img/Fondo4.jpg" alt="" width="100%" height="100%">
-  <form class="container col-xs-8" action="http://localhost:8000/register" method="post">
+  <form class="container col-xs-8">
     <!-- Title -->
     <div class="container col-xs-12">
       <div>
@@ -18,8 +18,7 @@
           <div class="input-group">
             <label for="user" class="input-group-addon"><span class="glyphicon glyphicon-user"></span></label>
             <input class="form-control" type="text"
-                   name="user" value="" id="user"
-                   ng-model="register.formElements.user" placeholder="User name...">
+                   id="user" ng-model="register.formElements.user" placeholder="User name...">
           </div>
         </div>
         <!-- User Password -->
@@ -27,8 +26,7 @@
           <div class="input-group">
             <label for="password" class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></label>
             <input class="form-control" type="password"
-                   name="password" value="" id="password"
-                   ng-model="register.formElements.password" placeholder="Password...">
+                   id="password" ng-model="register.formElements.password" placeholder="Password...">
           </div>
         </div>
       </div>
@@ -40,8 +38,7 @@
           <div class="input-group">
             <label for="name" class="input-group-addon"><span class="glyphicon glyphicon-user"></span></label>
             <input class="form-control" type="text"
-                   name="name" value="" id="name"
-                   ng-model="register.formElements.name" placeholder="Nombre...">
+                   id="name" ng-model="register.formElements.name" placeholder="Nombre...">
           </div>
         </div>
         <!-- Company -->
@@ -49,8 +46,7 @@
           <div class="input-group">
             <label for="company" class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></label>
             <input class="form-control" type="text"
-                   name="company" value="" id="company"
-                   ng-model="register.formElements.company" placeholder="Empresa...">
+                   id="company" ng-model="register.formElements.company" placeholder="Empresa...">
           </div>
         </div>
       </div>
@@ -61,8 +57,7 @@
           <div class="input-group">
             <label for="number" class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></label>
             <input class="form-control" type="text"
-                   name="number" value="" id="number"
-                   ng-model="register.formElements.number" placeholder="Telefono...">
+                   id="number" ng-model="register.formElements.number" placeholder="Telefono...">
           </div>
         </div>
         <!-- Fax -->
@@ -70,8 +65,7 @@
           <div class="input-group">
             <label for="fax" class="input-group-addon"><span class="glyphicon glyphicon-print"></span></label>
             <input class="form-control" type="text"
-                   name="fax" value="" id="fax"
-                   ng-model="register.formElements.fax" placeholder="Fax...">
+                   id="fax" ng-model="register.formElements.fax" placeholder="Fax...">
           </div>
         </div>
       </div>
@@ -82,8 +76,7 @@
           <div class="input-group">
             <label for="phone" class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></label>
             <input class="form-control" type="text"
-                   name="phone" value="" id="phone"
-                   ng-model="register.formElements.phone" placeholder="Celular...">
+                   id="phone" ng-model="register.formElements.phone" placeholder="Celular...">
           </div>
         </div>
         <!-- Email -->
@@ -91,15 +84,14 @@
           <div class="input-group">
             <label for="email" class="input-group-addon"><span>@</span></label>
             <input class="form-control" type="text"
-                   name="email" value="" id="email"
-                   ng-model="register.formElements.email" placeholder="Correo electronico...">
+                   id="email" ng-model="register.formElements.email" placeholder="Correo electronico...">
           </div>
         </div>
       </div>
 
       <!-- Description -->
       <div class="container col-xs-12 description">
-        <textarea class="form-control vresize" name="description"
+        <textarea class="form-control vresize"
                   ng-model="register.formElements.description" placeholder="Informacion Extra...">
         </textarea>
       </div>
@@ -113,10 +105,11 @@
            ng-click="register.deleteAllForm()">
         <span>LIMPIAR</span>
       </div>
-      <button type="submit" class="container col-xs-3 btn"
-              ng-class="{'disable': !register.validation()}">
+      <div class="container col-xs-3 btn"
+           ng-class="{'disable': !register.validation()}"
+           ng-click="register.send()">
         <span>ENVIAR</span>
-      </button>
+      </div>
       <div class="container col-xs-3 btn"
            ui-sref="home">
         <span>CONOCER</span>

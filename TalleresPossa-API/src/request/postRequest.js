@@ -1,38 +1,53 @@
 var q = require('q'),
     sendEmail = require('../email/sendEmail'),
-    connection = require('../bd/connection');
+    connection = require('../bd/connection'),
+    validation = require('../check/validations.js'),
+    token = require('../check/token.js');
 
 function login(req, res) {
-  var deffered = q.defer()
-  connection.login(req.body.user, req.body.password).then(function (success) {
-    if (success) {
-      res.redirect('http://127.0.0.1:3000/#/');
-      deffered.resolve(req.body.user)
-    }
+  if (validation.loginValidation(req)) {
+    connection.login(req.body.user, req.body.password).then(function (success) {
+      if (success)
+        res.end(JSON.stringify(token.createToken(req)));
 
-    res.writeHead(404, {'ContentType': 'text/html'});
-    res.write('<h1>Error en los datos de usuario</h1>');
-    res.end('<h3><a href="http://127.0.0.1:3000/#/login">Intente nuevamente</a></h3>');
-    deffered.resolve('')
-  })
-
-  return deffered.promise;
+      res.end('Data Warning');
+    })
+  } else
+    res.end('Data Wrong')
 }
 
 function register(req, res) {
-  var info = req.body;
+  if (validation.registerValidation(req)) {
+    var info = req.body;
 
-  connection.register(info.user, info.password,
-                      info.name, info.company,
-                      info.number, info.fax,
-                      info.phone, info.email,
-                      info.description);
+    connection.register(info.user, info.password,
+                        info.name, info.company,
+                        info.number, info.fax,
+                        info.phone, info.email,
+                        info.description);
 
-  res.end('<h1>Su solicitud fue enviada con exito</h1>');
+    res.end('success')
+  } else
+    res.end('Data Wrong');
 }
 
 function email(req, res) {
-  sendEmail.sendEmail(req, res);
+  setTimeout(function() {
+    console.log(req.body);
+  }, 5000)
+  if (validation.mailValidation(req))
+    sendEmail.sendEmail(req, res);
+  else
+    res.end('<h1>Error 404</h1>')
+}
+
+function closeSession(req, res) {
+  if (req.body.user)
+    connection.closeSession(req.body.user).then(function(res) {
+      res ? res.end('success') : res.end('fail')
+    })
+  else
+    res.end('fail')
 }
 
 

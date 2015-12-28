@@ -1,6 +1,9 @@
-var users = require('../users/usersInformation');
+var users = require('../users/usersInformation'),
+    token = require('../check/token.js');
 
-function usersInfo(req, res, userLogged) {
+function usersInfo(req, res, tokenCod) {
+  var userLogged = token.ensureAuthenticated(tokenCod);
+
   // Allow access the Ui to API data
   res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
