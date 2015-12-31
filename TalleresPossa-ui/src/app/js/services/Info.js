@@ -1,7 +1,7 @@
 (function (ng) {
   'use strict';
 
-  var Auth = function ($http, $q) {
+  var Info = function ($http, $q) {
 
     this.allInfo = function (){
       var info,
@@ -239,5 +239,5 @@
   };
 
   ng.module('talleresPossa')
-    .service('Auth', Auth);
+    .service('Info', Info);
 })(angular);

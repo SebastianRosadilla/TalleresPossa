@@ -13,8 +13,8 @@ function createToken(req) {
 function authenticated(tokenCod) {
   tokenCod = tokenCod.split("\"")[1];
 
-  return jwt.decode(tokenCod, config.TOKEN_SECRET).sub;
+  return (jwt.decode(tokenCod, config.TOKEN_SECRET).sub);
 }
 
 module.exports.createToken = createToken;
-module.exports.ensureAuthenticated =authenticated;
+module.exports.authenticated = authenticated;

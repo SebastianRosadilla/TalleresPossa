@@ -1,13 +1,13 @@
 (function (ng) {
   'use strict';
 
-  var LandingCtrl = function ($state, $location, $rootScope, Auth, $q, $http) {
+  var LandingCtrl = function ($state, $location, $rootScope, Info, $q, $http) {
     // Reference to use scope
     var $scope = this;
 
     this._$state = $state;
     this._$http = $http;
-    this.$Auth = Auth;
+    this.$Info = Info;
     this.$q  = $q;
     this.userInfo = {};
     this.initialized = false;
@@ -25,11 +25,11 @@
   };
 
   LandingCtrl.prototype.init = function() {
-    var $Auth = this.$Auth,
+    var $Info = this.$Info,
         info  =this._info,
         deffered = this.$q.defer();
 
-    $Auth.allInfo()
+    $Info.allInfo()
     .then(function(data) {
       if (data != '')
         deffered.resolve(data[0])
@@ -51,8 +51,7 @@
     var $http = this._$http,
         $scope = this;
 
-        console.log($scope);
-    $scope.userInfo.hasOwnProperty('Usuario') ? $scope.user = userInfo.Usuario : $scope.user = '';
+    $scope.userInfo.hasOwnProperty('Usuario') ? $scope.user = $scope.userInfo.Usuario : $scope.user = '';
 
     $http({
       url: 'http://127.0.0.1:8000/signOut',

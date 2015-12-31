@@ -1,0 +1,119 @@
+<div class="edit">
+  <img src="img/Fondo4.jpg" alt="" width="100%" height="100%">
+  <form class="container col-xs-8">
+    <!-- Title -->
+    <div class="container col-xs-12">
+      <div>
+        <h3>EDITAR DATOS</h3>
+      </div>
+      <div>
+        <span>{{edit.err}}</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="container input-group col-xs-12">
+        <!-- User Name  -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="user" class="input-group-addon"><span class="glyphicon glyphicon-user"></span></label>
+            <input class="form-control" type="text"
+                   id="user" ng-model="edit.formElements.user" placeholder="User name...">
+          </div>
+        </div>
+        <!-- User Password -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="password" class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></label>
+            <input class="form-control" type="text"
+                   id="password" ng-model="edit.formElements.password" placeholder="Password...">
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="container input-group col-xs-12">
+        <!-- Name -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="name" class="input-group-addon"><span class="glyphicon glyphicon-user"></span></label>
+            <input class="form-control" type="text"
+                   id="name" ng-model="edit.formElements.name" placeholder="Nombre...">
+          </div>
+        </div>
+        <!-- Company -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="company" class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></label>
+            <input class="form-control" type="text"
+                   id="company" ng-model="edit.formElements.company" placeholder="Empresa...">
+          </div>
+        </div>
+      </div>
+
+      <div class="container input-group col-xs-12">
+        <!-- Number -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="number" class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></label>
+            <input class="form-control" type="text"
+                   id="number" ng-model="edit.formElements.number" placeholder="Telefono...">
+          </div>
+        </div>
+        <!-- Fax -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="fax" class="input-group-addon"><span class="glyphicon glyphicon-print"></span></label>
+            <input class="form-control" type="text"
+                   id="fax" ng-model="edit.formElements.fax" placeholder="Fax...">
+          </div>
+        </div>
+      </div>
+
+      <div class="container input-group col-xs-12">
+        <!-- Number phone  -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="phone" class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></label>
+            <input class="form-control" type="text"
+                   id="phone" ng-model="edit.formElements.phone" placeholder="Celular...">
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="container col-xs-6">
+          <div class="input-group">
+            <label for="email" class="input-group-addon"><span>@</span></label>
+            <input class="form-control" type="text"
+                   id="email" ng-model="edit.formElements.email" placeholder="Correo electronico...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="container col-xs-12 description">
+        <textarea class="form-control vresize"
+                  ng-model="edit.formElements.description" placeholder="Informacion Extra...">
+        </textarea>
+      </div>
+    </div>
+
+    <!-- buttons -->
+    <div class="btn-group
+                col-xs-10 col-xs-offset-1
+                col-sm-offset-2 col-sm-8">
+      <div class="container col-xs-4 btn"
+           ng-click="edit.deleteAllForm()">
+        <span>LIMPIAR</span>
+      </div>
+      <div class="container col-xs-4 btn"
+           ng-class="{'disable': !edit.validation()}"
+           ng-click="edit.send()">
+        <span>ENVIAR</span>
+      </div>
+      <div class="container col-xs-4 btn"
+           ui-sref="landing">
+        <span>CANCELAR</span>
+      </div>
+    </div>
+  </form>
+</div>

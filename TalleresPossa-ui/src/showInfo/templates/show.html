@@ -1,0 +1,129 @@
+<div class="showInfo">
+  <img src="img/Fondo4.jpg" alt="" width="100%" height="100%">
+  <div class="container col-xs-8" ng-class="{'overflow' : show.admin.auth}">
+    <!-- Title -->
+    <div class="container col-xs-12">
+      <div class="container col-xs-6">
+        <h3>FICHA DE DATOS</h3>
+      </div>
+
+      <!-- Own data -->
+      <div class="container col-xs-12">
+        <div class="container col-xs-10 col-xs-offset-1">
+          <div class="container col-xs-6">
+            <span>USUARIO</span>
+            <div><span>- {{show.allInfo.myInfo.Usuario}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>CONTRASEÑA</span>
+            <div><span>- {{show.allInfo.myInfo.Contrasena}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>NOMBRE</span>
+            <div><span>- {{show.allInfo.myInfo.Nombre}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>EMPRESA</span>
+            <div><span>- {{show.allInfo.myInfo.Empresa}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>TELEFONO</span>
+            <div><span>- {{show.allInfo.myInfo.Telefono}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>FAX</span>
+            <div><span>- {{show.allInfo.myInfo.Fax}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>CELULAR</span>
+            <div><span>- {{show.allInfo.myInfo.Celular}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>CORREO</span>
+            <div><span>- {{show.allInfo.myInfo.Correo}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>FECHA DE REGISTRO></span>
+            <div><span>- {{show.allInfo.myInfo.Creacion}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>ULTIMA ACTUALIZACION</span>
+            <div><span>- {{show.allInfo.myInfo.UltimaActualizacion}}</span></div>
+          </div>
+          <div class="container col-xs-12">
+            <span>INFORMACION ADICIONAL</span>
+            <div><span>- {{show.allInfo.myInfo.Info}}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- search menu -->
+
+      <div class="container col-xs-12" ng-class="{'hidden' : !show.admin.auth}">
+        <div class="container col-xs-6">
+          <h3>CONTACTOS</h3>
+        </div>
+        <div class="container col-xs-6">
+          <div class="container col-xs-12 input-group">
+            <label for="search" class="input-group-addon"><span class="glyphicon glyphicon-search"></span></label>
+            <input ng-init="search = ''" ng-model="search" class="form-control"
+                   type="text" id="search"
+                   placeholder="Buscar...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Other user data -->
+      <div class="container col-xs-12">
+        <hr>
+        <div class="container col-xs-10 col-xs-offset-1" ng-repeat="user in show.allInfo.userData | filter:search">
+          <div class="container col-xs-6">
+            <span>LOGIN</span>
+            <div><span>- {{user.login ? 'Conectado' : 'Desconectado'}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>USUARIO</span>
+            <div><span>- {{user.Usuario}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>NOMBRE</span>
+            <div><span>- {{user.Nombre}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>EMPRESA</span>
+            <div><span>- {{user.Empresa}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>TELEFONO</span>
+            <div><span>- {{user.Telefono}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>FAX</span>
+            <div><span>- {{user.Fax}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>CELULAR</span>
+            <div><span>- {{user.Celular}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>CORREO</span>
+            <div><span>- {{user.Correo}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>FECHA DE REGISTRO></span>
+            <div><span>- {{user.Creacion}}</span></div>
+          </div>
+          <div class="container col-xs-6">
+            <span>ULTIMA ACTUALIZACION</span>
+            <div><span>- {{user.UltimaActualizacion}}</span></div>
+          </div>
+          <div class="container col-xs-12">
+            <span>INFORMACION ADICIONAL</span>
+            <div><span>- {{user.Info}}</span></div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

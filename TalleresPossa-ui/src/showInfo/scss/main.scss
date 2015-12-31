@@ -1,0 +1,81 @@
+.showInfo {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  >div {
+    border: 1px solid black;
+    background: rgba(255, 255, 255, 0.7);
+    height: 80%;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 10%;
+    width: 80%;
+
+    &.overflow {
+      overflow-y: auto;
+    }
+
+    >div {
+      height: 100%;
+
+      >div {
+        height: 10%;
+
+        hr {
+          border: 1px solid rgba(183, 183, 13, 0.71);
+        }
+
+        // Title container
+        &:first-child {
+        }
+
+        // Own info container and user info container
+        &:nth-child(2), &:last-child {
+          height: 80%;
+          // All span container
+          >div {
+            height: 100%;
+            // Each particular span container
+            >div {
+              height: calc(100% / 6);
+              text-align: center;
+
+              // title of each container
+              >span {
+                box-sizing: border-box;
+                font-weight: bold;
+                margin: 0;
+                text-decoration: underline;
+              }
+
+              // each data
+              >div {
+                margin-top: 2%;
+              }
+            }
+          }
+        }
+
+        // Search container
+        &:nth-child(3) {
+          >div {
+            height: 100%;
+
+            &:last-child {
+              padding-top: 10px;
+              // the bar search container
+              >div {}
+            }
+          }
+        }
+
+        // Other user information
+        &:last-child {
+        }
+      }
+    }
+  }
+}

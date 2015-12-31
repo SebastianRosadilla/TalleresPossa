@@ -23,9 +23,30 @@
     overflow-y: hidden;
 
     >div:first-child {
+
+      .dropdown {
+        button {
+          background: #fff;
+          border: 2px solid #337ab7;
+          border-radius: 0;
+          box-shadow: 0 0 80px;
+
+          span {
+            vertical-align: middle;
+          }
+        }
+
+        ul {
+          border: 1px solid #337ab7;
+          border-radius: 0;
+          box-shadow: 0 35px 80px;
+          transform: translateX(4%);
+          text-align: center;
+        }
+      }
+
       >div:last-child {
         margin-top: 20px;
-
         span {
           background: transparent;
           border: none;

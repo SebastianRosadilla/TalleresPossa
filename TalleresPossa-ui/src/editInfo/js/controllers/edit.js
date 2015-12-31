@@ -1,12 +1,13 @@
 (function (ng) {
   'use strict';
 
-  var RegCtrl = function ($state, $scope, $location, $rootScope, $http, $q) {
+  var EditCtrl = function ($state, $scope, $location, $rootScope, $http, $q, Info) {
     this._$state = $state;
     this._$scope = $scope;
     this._$q = $q;
     this._$http = $http;
     this._$location = $location;
+    this._$Info = Info;
     this.err = 'Para habilitar el boton enviar, se deben llenar los campos correctamente'
               +' Fax y Empresa no son obligatorios.';
     this.formElements = {
@@ -14,21 +15,55 @@
       name: '', company: '',
       number: '', fax: '',
       phone: '', email: '',
-      description: ''
+      description: '',
+      lastEmail: '', lastUser: ''
     }
+
+    this.init();
   };
 
-  RegCtrl.prototype.userValidation = function() {
+  EditCtrl.prototype.init = function() {
+    var $Info = this._$Info,
+        formElements = this.formElements,
+        deffered = this._$q.defer();
+
+    $Info.allInfo().then(function(datos) {
+      if (datos && datos.length > 0) {
+        formElements.user = datos[0].Usuario;
+        formElements.password = datos[0].Contrasena;
+        formElements.name = datos[0].Nombre;
+        formElements.company = datos[0].Empresa;
+        formElements.number = datos[0].Telefono;
+        formElements.fax = datos[0].Fax;
+        formElements.phone = datos[0].Celular;
+        formElements.email = datos[0].Correo;
+        formElements.description = datos[0].Info;
+
+        // Used this field to verify if the email change
+        formElements.lastEmail = datos[0].Correo;
+
+        // Used this field to verify if the user change
+        formElements.lastUser = datos[0].Usuario;
+      }
+    })
+  }
+
+  EditCtrl.prototype.userValidation = function() {
     var $http = this._$http,
         formElements = this.formElements,
         deffered = this._$q.defer();
+        userToSend = formElements.user;
+
+    if (userToSend == formElements.lastUser)
+      // Available user
+      userToSend = '';
 
     $http({
       url: 'http://127.0.0.1:8000/userExist',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
-        user: formElements.user
+        user: userToSend
       })
     })
     .success(function(result) {
@@ -38,17 +73,22 @@
     return deffered.promise
   }
 
-  RegCtrl.prototype.emailValidation = function() {
+  EditCtrl.prototype.emailValidation = function() {
     var $http = this._$http,
         formElements = this.formElements,
-        deffered = this._$q.defer();
+        deffered = this._$q.defer(),
+        emailToSend = formElements.email;
+
+    if (emailToSend == formElements.lastEmail)
+      // Available email
+      emailToSend = '';
 
     $http({
       url: 'http://127.0.0.1:8000/emailExist',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
-        email: formElements.email
+        email: emailToSend
       })
     })
     .success(function(result) {
@@ -58,7 +98,7 @@
     return deffered.promise
   }
 
-  RegCtrl.prototype.validation = function() {
+  EditCtrl.prototype.validation = function() {
     var $scope = this,
         checkEmpty = false,
         formElements = this.formElements;
@@ -99,14 +139,14 @@
     return false;
   }
 
-  RegCtrl.prototype.deleteAllForm = function() {
+  EditCtrl.prototype.deleteAllForm = function() {
     var formElement = this.formElements;
     for (var i in formElement) {
       formElement[i] = '';
     }
   }
 
-  RegCtrl.prototype.send = function() {
+  EditCtrl.prototype.send = function() {
     var formElements = this.formElements,
         $http = this._$http,
         $location = this._$location,
@@ -161,5 +201,5 @@
   }
 
   ng.module('talleresPossa')
-    .controller('RegCtrl', RegCtrl);
+    .controller('EditCtrl', EditCtrl);
 })(angular);

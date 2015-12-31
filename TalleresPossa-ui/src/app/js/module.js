@@ -5,7 +5,9 @@
     'ui.router',
     'ngResource',
     'home',
-    'login'
+    'login',
+    'showInfo',
+    'editInfo'
   ];
 
   ng.module('talleresPossa', dependencies)

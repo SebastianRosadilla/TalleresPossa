@@ -62,6 +62,39 @@ function usersInfoDB(user) {
   return deffered.promise;
 }
 
+function emailExist(email) {
+  var deffered = q.defer(),
+      connection = mysql.createConnection(userConnection);
+
+  if (email) {
+      connection.connect(function(err) {
+        if (err) throw err
+
+        console.log('conect to database, success.');
+      });
+
+    // Comparte the dates
+    connection.query(
+        'SELECT * FROM  `usuarios` WHERE  `Correo` LIKE  \'' + email + '\' LIMIT 0 , 30',
+        function (err, rows) {
+          if (err)
+            deffered.resolve(false);
+          else
+            if (rows.length === 1)
+              deffered.resolve(true);
+            else
+              deffered.resolve(false);
+
+          // End the connection
+          connection.end();
+        }
+      );
+  } else
+    deffered.resolve(false)
+
+  return deffered.promise;
+}
+
 function userExist(user) {
   var deffered = q.defer(),
       connection = mysql.createConnection(userConnection);
@@ -121,8 +154,9 @@ function login(user, password) {
 
             // Upgrate the login info on db
             connection.query(
-              'UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  `1` WHERE  `Usuario` LIKE  \'' + user + '\'',
-              function () {
+              'UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'1\' WHERE  `Usuario` LIKE  \'' + user + '\'',
+              function (err) {
+                if (err) throw err;
                 // End the connection
                 connection.end();
               }
@@ -175,7 +209,7 @@ function closeSession(user) {
         });
 
         // Update the login data
-        connection.query('UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  `0` WHERE  `Usuario` LIKE  \'' + user + '\'',
+        connection.query('UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'0\' WHERE  `Usuario` LIKE  \'' + user + '\'',
                           function(err) {
                             if (err)
                               deffered.resolve(false)
@@ -192,7 +226,33 @@ function closeSession(user) {
     return deffered.promise;
 }
 
+function setOffLogin(user) {
+  var connection = mysql.createConnection(userConnection);
+
+  userExist(user).then(function (result) {
+      if (result) {
+        connection.connect(function(err) {
+          if (err) throw err;
+
+          console.log('conect to database, success.');
+        });
+
+      // Upgrate the login info on db
+      connection.query(
+        'UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'0\' WHERE  `Usuario` LIKE  \'' + user + '\'',
+        function (err) {
+          if (err) throw err
+          // End the connection
+          connection.end();
+      })
+    }
+  })
+}
+
 module.exports.usersInfoDB = usersInfoDB;
 module.exports.login = login;
 module.exports.register = register;
 module.exports.closeSession = closeSession;
+module.exports.userExist = userExist;
+module.exports.emailExist = emailExist;
+module.exports.setOffLogin = setOffLogin;

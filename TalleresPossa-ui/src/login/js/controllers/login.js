@@ -29,7 +29,12 @@
   LoginCtrl.prototype.send = function() {
     var $http = this._$http,
         $location = this._$location,
-        $scope = this;
+        $scope = this,
+        // Send token for desauthenticate the last user
+        tokenCod = '';
+
+    if (localStorage.TalleresPossaAuth)
+      tokenCod = localStorage.TalleresPossaAuth
 
     $http({
       url: 'http://127.0.0.1:8000/login',
@@ -37,7 +42,8 @@
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
        user: $scope.user,
-       password: $scope.password
+       password: $scope.password,
+       lastToken: tokenCod
       })
     })
     .success(function(res) {

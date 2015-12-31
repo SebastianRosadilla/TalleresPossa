@@ -1,11 +1,11 @@
 (function (ng) {
   'use strict';
 
-  var HomeCtrl = function ($state, $scope, $location, $rootScope, Auth, $http) {
+  var HomeCtrl = function ($state, $scope, $location, $rootScope, Info, $http) {
     this._$state = $state;
     this._$scope = $scope;
     this._$http = $http;
-    this.$Auth = Auth;
+    this.$Info = Info;
     this._$location = $location;
     this.err = 'Talleres Possa S.A';
     this.formElements = {
@@ -26,29 +26,29 @@
   // Pre info on contact form
   HomeCtrl.prototype.initForm = function() {
     var formElements = this.formElements,
-        $Auth = this.$Auth;
+        $Info = this.$Info;
 
-    $Auth.nameUser().then(function(data) {
+    $Info.nameUser().then(function(data) {
       formElements.name = data
     })
 
-    $Auth.userCompany().then(function(data) {
+    $Info.userCompany().then(function(data) {
       formElements.company = data
     })
 
-    $Auth.userTel().then(function(data) {
+    $Info.userTel().then(function(data) {
       formElements.number = data
     })
 
-    $Auth.userFax().then(function(data) {
+    $Info.userFax().then(function(data) {
       formElements.fax = data
     })
 
-    $Auth.userPhone().then(function(data) {
+    $Info.userPhone().then(function(data) {
       formElements.phone = data
     })
 
-    $Auth.userEmail().then(function(data) {
+    $Info.userEmail().then(function(data) {
       formElements.email = data
     })
   }
@@ -247,7 +247,7 @@
         alert('Problema al enviar tu solcitud, Por favor intenta nuevamente')
       else
         alert('Enviado correctamente')
-        
+
       $scope.deleteAllForm();
     });
   }

@@ -5,12 +5,36 @@
       <h3 class="text-primary">WELCOME</h3>
     </div>
 
-    <div class="container col-xs-6
-                 text-right vertical-align"
-          ng-click="landing.closeSession()"
-          ng-class="{'hidden': landing.logged()}">
-        {{landing.userInfo.Usuario}}
-        <span>(Cerrar Session)</span>
+    <div class="container col-xs-1
+                col-xs-offset-4
+                text-right vertical-align
+                dropdown"
+         ng-class="{'hidden': landing.logged()}">
+      <button class="btn btn-default
+                    dropdown-toggle"
+              type="button" id="dropdownMenu1"
+              data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true">
+        <span>{{landing.userInfo.Usuario}}</span>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+      <ul class="dropdown-menu"  aria-labelledby="dropdownMenuDivider">
+        <li ui-sref="showInfo">
+          <span>Mostrar datos</span>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li ui-sref="editInfo">
+          <span>Editar datos</span>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li ng-click="landing.closeSession()">
+            <span>Cerrar session</span>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <span>Eliminar mi cuenta</span>
+        </li>
+      </ul>
     </div>
   </div>
   <hr class="bg-primary">
