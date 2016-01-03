@@ -115,5 +115,15 @@ app.post('/edit', function (req,res) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
-  
+  postRequest.edit(req, res);
+})
+
+app.post('/delete', function (req, res) {
+  // Allow access the Ui to API data
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  postRequest.userDelete(req, res);
 })

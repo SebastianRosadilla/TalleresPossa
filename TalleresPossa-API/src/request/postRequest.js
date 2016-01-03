@@ -72,6 +72,29 @@ function emailExist(email) {
   return deffered.promise
 }
 
+function edit(req, res) {
+  if (validation.editValidation(req)) {
+    var info = req.body;
+
+    connection.edit(info.user, info.password,
+                        info.name, info.company,
+                        info.number, info.fax,
+                        info.phone, info.email,
+                        info.description, info.lastUser);
+
+    res.end('success')
+  } else
+    res.end('Data Wrong');
+}
+
+function userDelete(req, res) {
+  if (req.body.user) {
+    connection.deleteUser(req.body.user);
+    res.end('success')
+  }else
+    res.end('fail')
+}
+
 
 module.exports.login = login;
 module.exports.register = register;
@@ -79,3 +102,5 @@ module.exports.email = email;
 module.exports.closeSession = closeSession;
 module.exports.userExist = userExist;
 module.exports.emailExist = emailExist;
+module.exports.edit = edit;
+module.exports.userDelete = userDelete;

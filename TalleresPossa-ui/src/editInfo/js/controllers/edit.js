@@ -51,7 +51,7 @@
   EditCtrl.prototype.userValidation = function() {
     var $http = this._$http,
         formElements = this.formElements,
-        deffered = this._$q.defer();
+        deffered = this._$q.defer(),
         userToSend = formElements.user;
 
     if (userToSend == formElements.lastUser)
@@ -67,7 +67,10 @@
       })
     })
     .success(function(result) {
-      deffered.resolve(!result)
+      if (result == 'true')
+        deffered.resolve(false);
+      else
+        deffered.resolve(true)
     })
 
     return deffered.promise
@@ -92,7 +95,10 @@
       })
     })
     .success(function(result) {
-      deffered.resolve(!result)
+      if (result == 'true')
+        deffered.resolve(false);
+      else
+        deffered.resolve(true)
     })
 
     return deffered.promise
@@ -168,13 +174,15 @@
                 name: formElements.name, company: formElements.company,
                 number: formElements.number, fax: formElements.fax,
                 phone: formElements.phone, email: formElements.email,
-                description: formElements.description
+                description: formElements.description, lastUser: formElements.lastUser
               })
             })
             .success(function(res) {
               if (res === 'Data Wrong')
                 $window.location.href = 'http://www.cual-es-mi-ip.net/geolocalizar-ip-mapa';
               else {
+                // delete the last token
+                localStorage.TalleresPossaAuth = '';
                 // Login user
                 $http({
                   url: 'http://127.0.0.1:8000/login',

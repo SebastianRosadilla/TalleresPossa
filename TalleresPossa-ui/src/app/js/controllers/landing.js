@@ -26,7 +26,7 @@
 
   LandingCtrl.prototype.init = function() {
     var $Info = this.$Info,
-        info  =this._info,
+        info  = this._info,
         deffered = this.$q.defer();
 
     $Info.allInfo()
@@ -38,6 +38,32 @@
     })
 
     return deffered.promise;
+  }
+
+  LandingCtrl.prototype.delete = function() {
+    var $http = this._$http,
+        userInfo = this.userInfo;
+
+    // In first time we close the current session
+    this.closeSession();
+
+
+    if (userInfo.Usuario) {
+      $http({
+        url: 'http://127.0.0.1:8000/delete',
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        data: $.param({
+         user: userInfo.Usuario
+        })
+      }).success(function(result) {
+        if (result == 'success') 
+          alert('Operacion exitosa')
+        else
+          alert('Error al intentar borrar usuario')
+      })
+    }
+
   }
 
   LandingCtrl.prototype.logged = function() {

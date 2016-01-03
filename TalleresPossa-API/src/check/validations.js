@@ -34,6 +34,32 @@ function registerValidation(req) {
   return false
 }
 
+function editValidation(req) {
+  // Are define the users params
+  if (req.body.hasOwnProperty('user') && req.body.hasOwnProperty('password')
+      && req.body.hasOwnProperty('name') && req.body.hasOwnProperty('company') &&
+      req.body.hasOwnProperty('number') && req.body.hasOwnProperty('fax')
+      && req.body.hasOwnProperty('phone') && req.body.hasOwnProperty('email')
+      && req.body.hasOwnProperty('lastUser'))
+      // User, password and name length are grather that 7
+      // email length grather that 13
+      if (req.body.user.length > 7 && req.body.password.length > 7
+      // abc@gmail.com has 13 letters
+      && req.body.email.length > 13 && req.body.name.length > 7
+      && req.body.lastUser.length > 7)
+        // password validation
+        if (/^[a-zA-Z0-9]+(\W|_|-)+[a-zA-Z0-9]*/.test(req.body.password))
+          // email validation
+          if (/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/.test(req.body.email))
+            // number validation
+            if (/^\+?(\d{1,3})?[- .]?\d+$/.test(req.body.number))
+              // phone number
+              if (/^\+?(\d{1,3})?[- .]?\d+$/.test(req.body.phone))
+                return true
+
+  return false
+}
+
 
 function mailValidation(req) {
   if (req.body.hasOwnProperty('name') && req.body.hasOwnProperty('company')

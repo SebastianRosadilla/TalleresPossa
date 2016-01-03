@@ -173,7 +173,6 @@ function login(user, password) {
 
 function register(user, password, name, company, number, fax, phone, email, description) {
   var connection = mysql.createConnection(userConnection),
-      deffered = q.defer(),
       date = currentDate();
 
     connection.connect(function(err) {
@@ -194,6 +193,40 @@ function register(user, password, name, company, number, fax, phone, email, desc
   // End the connection
   connection.end();
   });
+}
+
+function edit(user, password, name, company, number, fax, phone, email, description, lastUser) {
+  deleteUser(lastUser)
+  .then(function() {
+    register(user, password, name, company, number, fax, phone, email, description);
+  })
+}
+
+function deleteUser(user) {
+  var connection = mysql.createConnection(userConnection),
+      deffered = q.defer();
+
+  userExist(user).then(function (result) {
+      if (result) {
+        connection.connect(function(err) {
+          if (err) throw err;
+
+          console.log('conect to database, success.');
+        });
+
+      // Upgrate the login info on db
+      connection.query(
+        'DELETE FROM `TalleresPossa`.`usuarios`  WHERE  `Usuario` =  \'' + user + '\'',
+        function (err) {
+          if (err) throw err
+          // End the connection
+          connection.end();
+          deffered.resolve(true)
+      })
+    }
+  })
+
+  return deffered.promise;
 }
 
 function closeSession(user) {
@@ -256,3 +289,5 @@ module.exports.closeSession = closeSession;
 module.exports.userExist = userExist;
 module.exports.emailExist = emailExist;
 module.exports.setOffLogin = setOffLogin;
+module.exports.edit = edit;
+module.exports.deleteUser = deleteUser;

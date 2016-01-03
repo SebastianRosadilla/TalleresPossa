@@ -32,7 +32,10 @@
       })
     })
     .success(function(result) {
-      deffered.resolve(!result)
+      if (result == 'true')
+        deffered.resolve(false);
+      else
+        deffered.resolve(true)
     })
 
     return deffered.promise
@@ -52,7 +55,10 @@
       })
     })
     .success(function(result) {
-      deffered.resolve(!result)
+      if (result == 'true')
+        deffered.resolve(false);
+      else
+        deffered.resolve(true)
     })
 
     return deffered.promise
