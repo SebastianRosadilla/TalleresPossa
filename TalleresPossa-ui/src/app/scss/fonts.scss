@@ -1,3 +1,14 @@
+span, p, h4 {
+  font-family: 'Lobster', cursive !important;
+  letter-spacing: 2px;
+}
+
+h3 {
+  font-family: 'Satisfy', cursive !important;
+  font-weight: 600 !important;
+  letter-spacing: 5px;
+}
+
 @media screen and (max-width:1060px) {
   span {
     font-size: 10px;

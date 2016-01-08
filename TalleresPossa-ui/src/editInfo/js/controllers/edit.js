@@ -156,56 +156,65 @@
     var formElements = this.formElements,
         $http = this._$http,
         $location = this._$location,
-        $scope = this;
+        $scope = this,
+        // Send token for desauthenticate the last user
+        tokenCod = '';
 
-    // check user available
-    $scope.userValidation().then(function(result) {
-      if (result) {
-        // check email available
-        $scope.emailValidation().then(function (result) {
-          if (result) {
-            // Send the form info
-            $http({
-              url: 'http://127.0.0.1:8000/register',
-              method: 'POST',
-              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-              data: $.param({
-                user: formElements.user, password: formElements.password,
-                name: formElements.name, company: formElements.company,
-                number: formElements.number, fax: formElements.fax,
-                phone: formElements.phone, email: formElements.email,
-                description: formElements.description, lastUser: formElements.lastUser
-              })
+    if (localStorage.TalleresPossaAuth)
+      tokenCod = localStorage.TalleresPossaAuth
+
+    if ($scope.validation()) {
+      // check user available
+      $scope.userValidation().then(function(result) {
+        if (result || (formElements.lastUser === formElements.user)) {
+          // Delete the old user
+          $http({
+            url: 'http://127.0.0.1:8000/edit',
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: $.param({
+              user: formElements.user, password: formElements.password,
+              name: formElements.name, company: formElements.company,
+              number: formElements.number, fax: formElements.fax,
+              phone: formElements.phone, email: formElements.email,
+              description: formElements.description,
+              lastUser: formElements.lastUser
             })
-            .success(function(res) {
-              if (res === 'Data Wrong')
-                $window.location.href = 'http://www.cual-es-mi-ip.net/geolocalizar-ip-mapa';
-              else {
-                // delete the last token
-                localStorage.TalleresPossaAuth = '';
-                // Login user
-                $http({
-                  url: 'http://127.0.0.1:8000/login',
-                  method: 'POST',
-                  headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                  data: $.param({
-                   user: formElements.user,
-                   password: formElements.password
-                  })
+          })
+          .success(function(res) {
+            if (res === 'fail')
+              alert('Error al editar el usuario, por favor vuelva a intentar mas tarde');
+            else {
+              // Login with new user
+              $http({
+                url: 'http://127.0.0.1:8000/login',
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param({
+                 user: formElements.user,
+                 password: formElements.password,
+                 lastToken: tokenCod
                 })
-                .success(function(res) {
+              })
+              .success(function(res) {
+                if (res === 'Data Warning') {
+                  alert('No se pudo logear con el usuario editado');
+                  localStorage.TalleresPossaAuth = '';
+                  $scope.user = '';
+                  $scope.password = ''
+                }
+                else {
                   alert('Operacion Exitosa');
                   $location.url('/');
                   localStorage.TalleresPossaAuth = res;
-                })
-              }
-            })
-          } else
-            alert('el email ingresado ya esta siendo usado por un usuario')
-        })
-      } else
-        alert('el usuario ingresado ya existe')
-    })
+                }
+              })
+            }
+          })
+        } else
+          alert('el usuario ingresado ya existe')
+      })
+    }
   }
 
   ng.module('talleresPossa')

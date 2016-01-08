@@ -23,13 +23,12 @@ function login(req, res) {
 
 function register(req, res) {
   if (validation.registerValidation(req)) {
-    var info = req.body;
 
-    connection.register(info.user, info.password,
-                        info.name, info.company,
-                        info.number, info.fax,
-                        info.phone, info.email,
-                        info.description);
+    connection.register(req.body.user, req.body.password,
+                        req.body.name, req.body.company,
+                        req.body.number, req.body.fax,
+                        req.body.phone, req.body.email,
+                        req.body.description);
 
     res.end('success')
   } else
@@ -72,26 +71,35 @@ function emailExist(email) {
   return deffered.promise
 }
 
-function edit(req, res) {
-  if (validation.editValidation(req)) {
-    var info = req.body;
-
-    connection.edit(info.user, info.password,
-                        info.name, info.company,
-                        info.number, info.fax,
-                        info.phone, info.email,
-                        info.description, info.lastUser);
-
-    res.end('success')
-  } else
-    res.end('Data Wrong');
-}
-
 function userDelete(req, res) {
   if (req.body.user) {
     connection.deleteUser(req.body.user);
     res.end('success')
   }else
+    res.end('fail')
+}
+
+function editUser(req, res) {
+  var user = req.body.user;
+
+  //admin cannot change userName
+  if (req.body.lastUser === 'FabianPossamai')
+    req.body.user = req.body.lastUser;
+    
+  // run the register test
+  if (validation.registerValidation(req))
+    connection.editUser(req.body.user, req.body.password,
+                        req.body.name, req.body.company,
+                        req.body.number, req.body.fax,
+                        req.body.phone, req.body.email,
+                        req.body.description, req.body.lastUser)
+    .then(function(result) {
+      if (result)
+        res.end('success')
+      else
+        res.end('fail')
+    })
+  else
     res.end('fail')
 }
 
@@ -102,5 +110,5 @@ module.exports.email = email;
 module.exports.closeSession = closeSession;
 module.exports.userExist = userExist;
 module.exports.emailExist = emailExist;
-module.exports.edit = edit;
 module.exports.userDelete = userDelete;
+module.exports.editUser = editUser;

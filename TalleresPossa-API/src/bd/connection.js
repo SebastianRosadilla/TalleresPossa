@@ -38,7 +38,7 @@ function usersInfoDB(user) {
     connection.connect(function(err) {
       if (err) throw err
 
-      console.log('conect to database, success.');
+      console.log('conect to database (Getting User Info), success.');
     });
 
     // Obtein the information
@@ -70,7 +70,7 @@ function emailExist(email) {
       connection.connect(function(err) {
         if (err) throw err
 
-        console.log('conect to database, success.');
+        console.log('conect to database (Checking Email Exist), success.');
       });
 
     // Comparte the dates
@@ -103,7 +103,7 @@ function userExist(user) {
       connection.connect(function(err) {
         if (err) throw err
 
-        console.log('conect to database, success.');
+        console.log('conect to database (Checking User Exist), success.');
       });
 
     // Comparte the dates
@@ -137,7 +137,7 @@ function login(user, password) {
         connection.connect(function(err) {
           if (err) throw err
 
-          console.log('conect to database, success.');
+          console.log('conect to database (Login), success.');
         });
 
       // Comparte the dates
@@ -178,7 +178,7 @@ function register(user, password, name, company, number, fax, phone, email, desc
     connection.connect(function(err) {
       if (err) throw err
 
-      console.log('conect to database, success.');
+      console.log('conect to database (Recording), success.');
     });
 
     connection.query('INSERT INTO `TalleresPossa`.`usuarios` '
@@ -188,18 +188,11 @@ function register(user, password, name, company, number, fax, phone, email, desc
                     +' \'' + fax + '\', \'' + phone + '\', \'' + email + '\','
                     +' \'' + description + '\', \'' + date + '\','
                     +' \'' + date + '\', NULL);', function(err) {
-  if (err) throw err
+    if (err) throw err
 
-  // End the connection
-  connection.end();
-  });
-}
-
-function edit(user, password, name, company, number, fax, phone, email, description, lastUser) {
-  deleteUser(lastUser)
-  .then(function() {
-    register(user, password, name, company, number, fax, phone, email, description);
-  })
+    // End the connection
+    connection.end();
+    });
 }
 
 function deleteUser(user) {
@@ -211,7 +204,7 @@ function deleteUser(user) {
         connection.connect(function(err) {
           if (err) throw err;
 
-          console.log('conect to database, success.');
+          console.log('conect to database (Removing User), success.');
         });
 
       // Upgrate the login info on db
@@ -238,7 +231,7 @@ function closeSession(user) {
         connection.connect(function(err) {
           if (err) throw err
 
-          console.log('conect to database, success.');
+          console.log('conect to database (Closing Session), success.');
         });
 
         // Update the login data
@@ -267,7 +260,7 @@ function setOffLogin(user) {
         connection.connect(function(err) {
           if (err) throw err;
 
-          console.log('conect to database, success.');
+          console.log('conect to database (Login Off), success.');
         });
 
       // Upgrate the login info on db
@@ -282,6 +275,47 @@ function setOffLogin(user) {
   })
 }
 
+function editUser(user, password, name, company, number, fax, phone, email, description, lastUser) {
+  var deffered = q.defer(),
+     connection = mysql.createConnection(userConnection);
+
+  // if lastUser exist
+  userExist(lastUser).then(function(result) {
+    if (result) {
+      connection.connect(function(err) {
+        if (err) throw err
+
+        console.log('conect to database (Editing), success.');
+      });
+
+      connection.query('UPDATE  `TalleresPossa`.`usuarios` SET '
+      + '`Usuario` =  \''+ user + '\','
+      + '`Contrasena` =  \'' + password + '\','
+      + '`Nombre` =  \'' + name + '\','
+      + '`Empresa` =  \'' + company + '\','
+      + '`Telefono` =  \'' + number + '\','
+      + '`Fax` =  \'' + fax + '\','
+      + '`Celular` =  \'' + phone + '\','
+      + '`Correo` =  \'' + email + '\','
+      + '`Info` =  \'' + description + '\','
+      + '`UltimaActualizacion` =  \'' + currentDate() + '\' '
+      + 'WHERE  `Usuario` LIKE  \'' + lastUser + '\'', function(err) {
+        if (err) {
+          deffered.resolve(false);
+          throw err
+        }
+
+        deffered.resolve(true);
+        // End the connection
+        connection.end();
+        });
+    } else
+      deffered.resolve(false)
+  })
+
+  return deffered.promise;
+}
+
 module.exports.usersInfoDB = usersInfoDB;
 module.exports.login = login;
 module.exports.register = register;
@@ -289,5 +323,5 @@ module.exports.closeSession = closeSession;
 module.exports.userExist = userExist;
 module.exports.emailExist = emailExist;
 module.exports.setOffLogin = setOffLogin;
-module.exports.edit = edit;
 module.exports.deleteUser = deleteUser;
+module.exports.editUser = editUser;

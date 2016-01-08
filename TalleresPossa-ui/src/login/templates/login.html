@@ -1,66 +1,68 @@
 <div class="login">
-  <img src="img/Fondo4.jpg" alt="" width="100%" height="100%">
+  <img src="img/Fondo4.jpg" alt="Problemas al cargar la imagen">
   <form class="container col-xs-6 col-xs-offset-3">
-    <div class="container
-                col-xs-6 col-xs-offset-3
-                col-sm-4 col-sm-offset-4">
-      <h3><b>INGRESAR</b></h3>
-    </div>
-
-    <!-- User field -->
     <div class="container col-xs-12">
       <div class="container
                   col-xs-6 col-xs-offset-3
-                  col-sm-6 col-sm-offset-3">
-        <h4>Usuario</h4>
+                  col-sm-4 col-sm-offset-4">
+        <h3>INGRESAR</h3>
       </div>
-      <div class="container input-group
-                  col-xs-10 col-xs-offset-1
-                  col-sm-6 col-sm-offset-3">
-        <label for="user" class="input-group-addon"><span class="glyphicon glyphicon-user"></span></label>
-        <input ng-model="login.user" class="form-control"
-               type="text" id="user"
-               placeholder="Usuario...">
-      </div>
-    </div>
 
-    <!-- Password field-->
-    <div class="container col-xs-12">
-      <div class="container
-                  col-xs-6 col-xs-offset-3
-                  col-sm-6 col-sm-offset-3">
-        <h4>Contraseña</h4>
+      <!-- User field -->
+      <div class="container col-xs-12">
+        <div class="container
+                    col-xs-6 col-xs-offset-3
+                    col-sm-6 col-sm-offset-3">
+          <h4>Usuario</h4>
+        </div>
+        <div class="container input-group
+                    col-xs-10 col-xs-offset-1
+                    col-sm-6 col-sm-offset-3">
+          <label for="user" class="input-group-addon"><icon class="glyphicon glyphicon-user"></icon></label>
+          <input ng-model="login.user" class="form-control"
+                 type="text" id="user"
+                 placeholder="Usuario...">
+        </div>
       </div>
-      <div class="container input-group
-                  col-xs-10 col-xs-offset-1
-                  col-sm-6 col-sm-offset-3">
-        <label for="password" class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></label>
-        <input ng-model="login.password" class="form-control"
-               type="password" id="password"
-               placeholder="Contraseña...">
-      </div>
-    </div>
 
-    <!-- Buttons -->
-    <div class="btn-group
-                col-xs-12
-                col-sm-offset-2 col-sm-8">
-      <div class="container btn
-                  col-xs-4"
-           ui-sref="register">
-        <span>REGISTRAR</span>
+      <!-- Password field-->
+      <div class="container col-xs-12">
+        <div class="container
+                    col-xs-6 col-xs-offset-3
+                    col-sm-6 col-sm-offset-3">
+          <h4>Contraseña</h4>
+        </div>
+        <div class="container input-group
+                    col-xs-10 col-xs-offset-1
+                    col-sm-6 col-sm-offset-3">
+          <label for="password" class="input-group-addon"><icon class="glyphicon glyphicon-asterisk"></icon></label>
+          <input ng-model="login.password" class="form-control"
+                 type="password" id="password"
+                 placeholder="Contraseña...">
+        </div>
       </div>
-      <div ng-class="{'disable': !login.validation()}"
-           ng-click="login.send()"
-           class="container col-xs-4 btn">
-        <span>INGRESAR</span>
+
+      <!-- Buttons -->
+      <div class="btn-group
+                  col-xs-12
+                  col-sm-offset-2 col-sm-8">
+        <div class="container btn
+                    col-xs-4"
+             ui-sref="register">
+          <span>REGISTRAR</span>
+        </div>
+        <div ng-class="{'disable': !login.validation()}"
+             ng-click="login.send()"
+             class="container col-xs-4 btn">
+          <span>INGRESAR</span>
+        </div>
+        <div class="container btn
+                    col-xs-4"
+             ui-sref="landing">
+          <span>VOLVER</span>
+        </div>
+        <span>{{login.err}}</span>
       </div>
-      <div class="container btn
-                  col-xs-4"
-           ui-sref="landing">
-        <span>VOLVER</span>
-      </div>
-      <span>{{login.err}}</span>
     </div>
   </form>
 </div>

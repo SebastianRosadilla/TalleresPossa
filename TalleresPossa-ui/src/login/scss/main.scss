@@ -1,6 +1,14 @@
 .login {
   height: 100%;
   position: relative;
+
+  // background
+  >img {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Login container
   >form {
     border: 1px solid black;
     background: rgba(255, 255, 255, 0.7);
@@ -10,17 +18,61 @@
     position: absolute;
     top: 20%;
 
+    // Need it this container for switch on
+    // position absolute in the inside containers
     >div {
-      height: 30%;
-      text-align: center;
+      height: 100%;
+      position: relative;
+      width: 100%;
 
-      &:first-child, &:last-child {
-          height: 20%;
+      // Elements containers
+      >div {
+        height: 30%;
+        position: absolute;
+        text-align: center;
+
+        &:first-child, &:last-child {
+            height: 20%;
         }
-      .btn {
-        background: rgba(197, 200, 195, 0.56);
-        border: 1px solid black;
-        margin-bottom: 2%;
+
+        // Fields containers
+        &:nth-child(2), &:nth-child(3) {
+          >div {
+            height: 50%;
+
+            // Input Field
+            &:last-child {
+              height: 20%;
+            }
+          }
+        }
+
+        // Title container
+        &:first-child {
+          top: 0;
+        }
+
+        // User container
+        &:nth-child(2) {
+          top: 20%;
+        }
+
+        // Password container
+        &:nth-child(3) {
+          // 20% of title container height + 30% user container height
+          top: 50%;
+        }
+
+        &:last-child {
+          top: 80%;
+        }
+
+        .btn {
+          background: rgba(197, 200, 195, 0.56);
+          border: 1px solid black;
+          box-sizing: border-box;
+          margin-bottom: 2%;
+        }
       }
     }
   }

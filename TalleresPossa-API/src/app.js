@@ -7,6 +7,13 @@ var express = require('express'),
     postRequest = require('./request/postRequest'),
     port = 8000;
 
+function allow (res) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+}
+
 
 
 app.use(bodyParser.json()); // support json encoded bodies
@@ -19,10 +26,7 @@ app.listen(port, function() {
 
 app.get('/', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   // obtein the token
   var token = '';
@@ -38,50 +42,35 @@ app.get('/', function (req, res) {
 
 app.post('/signOut', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   postRequest.closeSession(req, res);
 });
 
 app.post('/login', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   postRequest.login(req, res);
 })
 
 app.post('/register', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   postRequest.register(req, res);
 })
 
 app.post('/email', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   postRequest.email(req, res);
 })
 
 app.post('/userExist', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   // check that the user is not undefine
   if (req.body.user)
@@ -94,10 +83,7 @@ app.post('/userExist', function (req, res) {
 
 app.post('/emailExist', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   // check that the user is not undefine
   if (req.body.email)
@@ -108,22 +94,20 @@ app.post('/emailExist', function (req, res) {
     res.send('false')
 })
 
-app.post('/edit', function (req,res) {
-  // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  postRequest.edit(req, res);
-})
-
 app.post('/delete', function (req, res) {
   // Allow access the Ui to API data
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  allow(res);
 
   postRequest.userDelete(req, res);
+})
+
+app.post('/edit', function(req, res) {
+  // Allow access the Ui to API data
+  allow(res);
+
+  // I need a last user for reconozing the user to edit
+  if (req.body && req.body.lastUser)
+    postRequest.editUser(req, res)
+  else
+    res.end('fail')
 })
