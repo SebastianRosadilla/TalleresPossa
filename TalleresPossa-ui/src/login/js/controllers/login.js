@@ -37,7 +37,7 @@
       tokenCod = localStorage.TalleresPossaAuth
 
     $http({
-      url: 'http://127.0.0.1:8000/login',
+      url: 'http://54.201.114.39:8000/login',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({

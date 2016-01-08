@@ -2,7 +2,7 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
+-- Servidor: 54.201.114.39
 -- Tiempo de generación: 24-12-2015 a las 14:40:43
 -- Versión del servidor: 5.5.46-0ubuntu0.14.04.2
 -- Versión de PHP: 5.5.9-1ubuntu4.14

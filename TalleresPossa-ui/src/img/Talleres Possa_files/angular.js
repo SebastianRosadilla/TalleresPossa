@@ -27693,13 +27693,13 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
       <div>
         Show:
         <div class="check-element animate-show" ng-show="checked">
-          <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
+          <54.201.114.39 glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
         </div>
       </div>
       <div>
         Hide:
         <div class="check-element animate-show" ng-hide="checked">
-          <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
+          <54.201.114.39 glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
         </div>
       </div>
     </file>
@@ -27857,13 +27857,13 @@ var ngShowDirective = ['$animate', function($animate) {
       <div>
         Show:
         <div class="check-element animate-hide" ng-show="checked">
-          <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
+          <54.201.114.39 glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
         </div>
       </div>
       <div>
         Hide:
         <div class="check-element animate-hide" ng-hide="checked">
-          <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
+          <54.201.114.39 glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
         </div>
       </div>
     </file>

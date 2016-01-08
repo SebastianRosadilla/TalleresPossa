@@ -50,7 +50,7 @@
 
     if (userInfo.Usuario) {
       $http({
-        url: 'http://127.0.0.1:8000/delete',
+        url: 'http://54.201.114.39:8000/delete',
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         data: $.param({
@@ -80,7 +80,7 @@
     $scope.userInfo.hasOwnProperty('Usuario') ? $scope.user = $scope.userInfo.Usuario : $scope.user = '';
 
     $http({
-      url: 'http://127.0.0.1:8000/signOut',
+      url: 'http://54.201.114.39:8000/signOut',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({

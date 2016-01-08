@@ -54,7 +54,7 @@
  app.get('/', function (req, res) {[m
 [31m-  getRequest.usersInfo(req, res, localStorage.talleresPossaUser);[m
 [32m+[m[32m  // Allow access the Ui to API data[m
-[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');[m
+[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.114.39:3000');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Credentials', true);[m
@@ -73,10 +73,10 @@
  [m
 [31m-app.get('/signOut', function (req, res) {[m
 [31m-  localStorage.talleresPossaUser = '';[m
-[31m-  res.redirect('http://127.0.0.1:3000/#/')[m
+[31m-  res.redirect('http://54.201.114.39:3000/#/')[m
 [32m+[m[32mapp.post('/signOut', function (req, res) {[m
 [32m+[m[32m  // Allow access the Ui to API data[m
-[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');[m
+[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.114.39:3000');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Credentials', true);[m
@@ -89,7 +89,7 @@
 [31m-    localStorage.talleresPossaUser = user[m
 [31m-  })[m
 [32m+[m[32m  // Allow access the Ui to API data[m
-[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');[m
+[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.114.39:3000');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Credentials', true);[m
@@ -99,7 +99,7 @@
  [m
  app.post('/register', function (req, res) {[m
 [32m+[m[32m  // Allow access the Ui to API data[m
-[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');[m
+[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.114.39:3000');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Credentials', true);[m
@@ -109,7 +109,7 @@
  [m
  app.post('/email', function (req, res) {[m
 [32m+[m[32m  // Allow access the Ui to API data[m
-[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');[m
+[32m+[m[32m  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.114.39:3000');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');[m
 [32m+[m[32m  res.setHeader('Access-Control-Allow-Credentials', true);[m
@@ -332,7 +332,7 @@
        }[m
 [32m+[m[32m      res.end('success');[m
        console.log('Message sent: ' + info.response);[m
-[31m-      res.redirect(301, 'http://127.0.0.1:3000/#/');[m
+[31m-      res.redirect(301, 'http://54.201.114.39:3000/#/');[m
    });[m
  }[m
  [m
@@ -350,7 +350,7 @@
  [m
 [31m-function usersInfo(req, res, userLogged) {[m
    // Allow access the Ui to API data[m
-   res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');[m
+   res.setHeader('Access-Control-Allow-Origin', 'http://54.201.114.39:3000');[m
    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');[m
 [1mdiff --git a/TalleresPossa-API/src/request/postRequest.js b/TalleresPossa-API/src/request/postRequest.js[m
 [1mindex 6c4022e..1f1d64f 100644[m
@@ -368,13 +368,13 @@
 [31m-  var deffered = q.defer()[m
 [31m-  connection.login(req.body.user, req.body.password).then(function (success) {[m
 [31m-    if (success) {[m
-[31m-      res.redirect('http://127.0.0.1:3000/#/');[m
+[31m-      res.redirect('http://54.201.114.39:3000/#/');[m
 [31m-      deffered.resolve(req.body.user)[m
 [31m-    }[m
 [31m-[m
 [31m-    res.writeHead(404, {'ContentType': 'text/html'});[m
 [31m-    res.write('<h1>Error en los datos de usuario</h1>');[m
-[31m-    res.end('<h3><a href="http://127.0.0.1:3000/#/login">Intente nuevamente</a></h3>');[m
+[31m-    res.end('<h3><a href="http://54.201.114.39:3000/#/login">Intente nuevamente</a></h3>');[m
 [31m-    deffered.resolve('')[m
 [31m-  })[m
 [31m-[m
@@ -508,7 +508,7 @@
 [32m+[m[32m    $scope.userInfo.hasOwnProperty('Usuario') ? $scope.user = userInfo.Usuario : $scope.user = '';[m
 [32m+[m
 [32m+[m[32m    $http({[m
-[32m+[m[32m      url: 'http://127.0.0.1:8000/signOut',[m
+[32m+[m[32m      url: 'http://54.201.114.39:8000/signOut',[m
 [32m+[m[32m      method: 'POST',[m
 [32m+[m[32m      headers: {'Content-Type': 'application/x-www-form-urlencoded'},[m
 [32m+[m[32m      data: $.param({[m
@@ -530,9 +530,9 @@
        var info,[m
            deffered = $q.defer();[m
  [m
-[31m-      $http.get('http://127.0.0.1:8000').success(function(data) {[m
+[31m-      $http.get('http://54.201.114.39:8000').success(function(data) {[m
 [32m+[m[32m      $http({[m
-[32m+[m[32m        url:'http://127.0.0.1:8000',[m
+[32m+[m[32m        url:'http://54.201.114.39:8000',[m
 [32m+[m[32m        method: 'GET',[m
 [32m+[m[32m        params: localStorage.TalleresPossaAuth[m
 [32m+[m[32m      })[m
@@ -566,7 +566,7 @@
      </div>[m
  [m
 [31m-    </form>[m
-[31m-    <form method="get" action="http://127.0.0.1:8000/signOut"[m
+[31m-    <form method="get" action="http://54.201.114.39:8000/signOut"[m
 [31m-          class="container col-xs-6[m
 [32m+[m[32m    <div class="container col-xs-6[m
                   text-right vertical-align"[m
@@ -624,7 +624,7 @@
 [32m+[m[32m        formElements = this.formElements;[m
 [32m+[m
 [32m+[m[32m    $http({[m
-[32m+[m[32m      url: 'http://127.0.0.1:8000/email',[m
+[32m+[m[32m      url: 'http://54.201.114.39:8000/email',[m
 [32m+[m[32m      method: 'POST',[m
 [32m+[m[32m      headers: {'Content-Type': 'application/x-www-form-urlencoded'},[m
 [32m+[m[32m      data: $.param({[m
@@ -655,7 +655,7 @@
  [m
    <!-- Contact us container -->[m
    <div class="container col-xs-12 section" id="contactPage">[m
-[31m-    <form action="http://localhost:8000/email" class="form" method="post">[m
+[31m-    <form action="http://54.201.114.39:8000/email" class="form" method="post">[m
 [32m+[m[32m    <form class="form">[m
        <div class="container col-xs-8">[m
          <!-- Title -->[m
@@ -787,7 +787,7 @@ Binary files a/TalleresPossa-ui/src/img/Fondo4.jpg and b/TalleresPossa-ui/src/im
 [32m+[m[32m        $scope = this;[m
 [32m+[m
 [32m+[m[32m    $http({[m
-[32m+[m[32m      url: 'http://127.0.0.1:8000/login',[m
+[32m+[m[32m      url: 'http://54.201.114.39:8000/login',[m
 [32m+[m[32m      method: 'POST',[m
 [32m+[m[32m      headers: {'Content-Type': 'application/x-www-form-urlencoded'},[m
 [32m+[m[32m      data: $.param({[m
@@ -822,7 +822,7 @@ Binary files a/TalleresPossa-ui/src/img/Fondo4.jpg and b/TalleresPossa-ui/src/im
 [36m@@ -1,6 +1,6 @@[m
  <div class="login">[m
    <img src="img/Fondo4.jpg" alt="" width="100%" height="100%">[m
-[31m-  <form class="container col-xs-6 col-xs-offset-3" action="http://localhost:8000/login" method="post">[m
+[31m-  <form class="container col-xs-6 col-xs-offset-3" action="http://54.201.114.39:8000/login" method="post">[m
 [32m+[m[32m  <form class="container col-xs-6 col-xs-offset-3">[m
      <div class="container[m
                  col-xs-6 col-xs-offset-3[m
@@ -909,7 +909,7 @@ Binary files a/TalleresPossa-ui/src/img/Fondo4.jpg and b/TalleresPossa-ui/src/im
 [32m+[m[32m        $location = this._$location;[m
 [32m+[m[32m    // Send the form info[m
 [32m+[m[32m    $http({[m
-[32m+[m[32m      url: 'http://127.0.0.1:8000/register',[m
+[32m+[m[32m      url: 'http://54.201.114.39:8000/register',[m
 [32m+[m[32m      method: 'POST',[m
 [32m+[m[32m      headers: {'Content-Type': 'application/x-www-form-urlencoded'},[m
 [32m+[m[32m      data: $.param({[m
@@ -926,7 +926,7 @@ Binary files a/TalleresPossa-ui/src/img/Fondo4.jpg and b/TalleresPossa-ui/src/im
 [32m+[m[32m      else {[m
 [32m+[m[32m        // Login user[m
 [32m+[m[32m        $http({[m
-[32m+[m[32m          url: 'http://127.0.0.1:8000/login',[m
+[32m+[m[32m          url: 'http://54.201.114.39:8000/login',[m
 [32m+[m[32m          method: 'POST',[m
 [32m+[m[32m          headers: {'Content-Type': 'application/x-www-form-urlencoded'},[m
 [32m+[m[32m          data: $.param({[m
@@ -952,7 +952,7 @@ Binary files a/TalleresPossa-ui/src/img/Fondo4.jpg and b/TalleresPossa-ui/src/im
 [36m@@ -1,6 +1,6 @@[m
  <div class="register">[m
    <img src="img/Fondo4.jpg" alt="" width="100%" height="100%">[m
-[31m-  <form class="container col-xs-8" action="http://localhost:8000/register" method="post">[m
+[31m-  <form class="container col-xs-8" action="http://54.201.114.39:8000/register" method="post">[m
 [32m+[m[32m  <form class="container col-xs-8">[m
      <!-- Title -->[m
      <div class="container col-xs-12">[m
