@@ -1,7 +1,7 @@
 var mysql = require('mysql'),
     q = require('q'),
     userConnection = {
-      host     : '54.201.114.39',
+      host     : '127.0.0.1',
       user     : 'root',
       password : 'TalleresPossa2015?',
       database: 'TalleresPossa'

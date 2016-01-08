@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./src/app.js",
     "debug": "node-inspector & nodemon --debug-brk ./src/app.js",
-    "exportDB": "mysqldump -uroot -pTalleresPossa2015? -h54.201.114.39 TalleresPossa > DataBase.sql",
-    "importDB": "mysql -uroot -pTalleresPossa2015? -h54.201.114.39 TalleresPossa < DataBase.sql"
+    "exportDB": "mysqldump -uroot -pTalleresPossa2015? -h127.0.0.1 TalleresPossa > DataBase.sql",
+    "importDB": "mysql -uroot -pTalleresPossa2015? -h127.0.0.1 TalleresPossa < DataBase.sql"
   },
   "repository": {
     "type": "git",
