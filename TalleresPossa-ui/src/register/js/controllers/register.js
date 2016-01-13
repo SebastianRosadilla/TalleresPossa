@@ -16,6 +16,12 @@
       phone: '', email: '',
       description: ''
     }
+
+    //FIXME trouble whit jQuery
+    if ($rootScope.notHome) {
+      $rootScope.Home = false;
+      window.location.reload();
+    }
   };
 
   RegCtrl.prototype.userValidation = function() {

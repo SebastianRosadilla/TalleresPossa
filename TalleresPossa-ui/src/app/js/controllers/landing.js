@@ -20,7 +20,7 @@
     //FIXME trouble whit jQuery
     if ($rootScope.notHome) {
       $rootScope.Home = false;
-      window.location.reload();
+      window.location = 'http://127.0.0.1:3000'
     }
   };
 
@@ -57,7 +57,7 @@
          user: userInfo.Usuario
         })
       }).success(function(result) {
-        if (result == 'success') 
+        if (result == 'success')
           alert('Operacion exitosa')
         else
           alert('Error al intentar borrar usuario')

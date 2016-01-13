@@ -173,7 +173,24 @@ function login(user, password) {
 
 function register(user, password, name, company, number, fax, phone, email, description) {
   var connection = mysql.createConnection(userConnection),
-      date = currentDate();
+      date = currentDate(),
+      query = 'INSERT INTO `TalleresPossa`.`usuarios` '
+                      +'(`login`, `Usuario`, `Contrasena`, `Nombre`, `Empresa`, `Telefono`, `Fax`, `Celular`, `Correo`, `Info`, `Creacion`, `UltimaActualizacion`, `ID`)'
+                      +' VALUES (\'0\', \'' + user + '\', \'' + password + '\','
+                      +' \'' + name + '\', \'' + company + '\', \'' + number + '\','
+                      +' \'' + fax + '\', \'' + phone + '\', \'' + email + '\','
+                      +' \'' + description + '\', \'' + date + '\','
+                      +' \'' + date + '\', NULL);'
+
+    if(user === 'FabianPossamai')
+      // Just for the case when admin delete the account and register again
+      query = 'INSERT INTO `TalleresPossa`.`usuarios` '
+              +'(`login`, `Usuario`, `Contrasena`, `Nombre`, `Empresa`, `Telefono`, `Fax`, `Celular`, `Correo`, `Info`, `Creacion`, `UltimaActualizacion`, `ID`)'
+              +' VALUES (\'0\', \'' + user + '\', \'' + password + '\','
+              +' \'' + name + '\', \'' + company + '\', \'' + number + '\','
+              +' \'' + fax + '\', \'' + phone + '\', \'' + email + '\','
+              +' \'' + description + '\', \'' + date + '\','
+              +' \'' + date + '\', \'1\');'
 
     connection.connect(function(err) {
       if (err) throw err
@@ -181,13 +198,7 @@ function register(user, password, name, company, number, fax, phone, email, desc
       console.log('conect to database (Recording), success.');
     });
 
-    connection.query('INSERT INTO `TalleresPossa`.`usuarios` '
-                    +'(`login`, `Usuario`, `Contrasena`, `Nombre`, `Empresa`, `Telefono`, `Fax`, `Celular`, `Correo`, `Info`, `Creacion`, `UltimaActualizacion`, `ID`)'
-                    +' VALUES (\'0\', \'' + user + '\', \'' + password + '\','
-                    +' \'' + name + '\', \'' + company + '\', \'' + number + '\','
-                    +' \'' + fax + '\', \'' + phone + '\', \'' + email + '\','
-                    +' \'' + description + '\', \'' + date + '\','
-                    +' \'' + date + '\', NULL);', function(err) {
+    connection.query(query, function(err) {
     if (err) throw err
 
     // End the connection

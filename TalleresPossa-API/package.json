@@ -33,6 +33,7 @@
     "browser-sync": "^2.9.12",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-connect-pm2": "0.0.2",
     "gulp-load-plugins": "^1.1.0",
     "gulp-minify": "0.0.5",
     "gulp-sass": "^2.1.0",
