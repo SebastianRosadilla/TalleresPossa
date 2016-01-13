@@ -20,7 +20,18 @@
               templateUrl: 'app/templates/landing.html',
               controller: 'LandingCtrl as landing'
             }
-          }
+          },
+          data: { requiresLogin: false }
+        })
+        .state('landing2', {
+          url: '/',
+          views: {
+            main: {
+              templateUrl: 'app/templates/landing.html',
+              controller: 'LandingCtrl as landing'
+            }
+          },
+          data: { requiresLogin: false }
         });
     })
     .directive('srFooter', function() {

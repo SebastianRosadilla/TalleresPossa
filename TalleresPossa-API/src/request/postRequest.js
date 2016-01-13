@@ -85,7 +85,7 @@ function editUser(req, res) {
   //admin cannot change userName
   if (req.body.lastUser === 'FabianPossamai')
     req.body.user = req.body.lastUser;
-    
+
   // run the register test
   if (validation.registerValidation(req))
     connection.editUser(req.body.user, req.body.password,

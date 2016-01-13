@@ -16,7 +16,8 @@
               templateUrl: 'showInfo/templates/show.html',
               controller: 'ShowCtrl as show'
             }
-          }
+          },
+          data: { requiresLogin: true }
         });
     });
 })(angular);

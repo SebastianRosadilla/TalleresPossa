@@ -20,7 +20,14 @@
     //FIXME trouble whit jQuery
     if ($rootScope.notHome) {
       $rootScope.Home = false;
-      window.location = 'http://127.0.0.1:3000'
+      window.location = 'http://127.0.0.1:3000';
+
+      // none display the things for 0.5s to render the page
+      // This behavior allow no see the restructure then of visit home page
+      document.getElementsByClassName('main')[0].style.display = 'none';
+      setTimeout(function () {
+        document.getElementsByClassName('main')[0].style.display = '';
+      }, 500)
     }
   };
 
