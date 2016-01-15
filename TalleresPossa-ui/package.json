@@ -30,6 +30,7 @@
     "gulp-load-plugins": "^1.1.0",
     "gulp-minify": "0.0.5",
     "gulp-sass": "^2.1.0",
+    "http-server": "^0.8.5",
     "node-sass": "^3.4.1"
   }
 }
