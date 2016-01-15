@@ -16,7 +16,8 @@
               templateUrl: 'editInfo/templates/edit.html',
               controller: 'EditCtrl as edit'
             }
-          }
+          },
+          data: { requiresLogin: true }
         });
     });
 })(angular);

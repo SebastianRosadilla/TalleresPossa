@@ -20,7 +20,8 @@
               templateUrl: 'app/templates/header.html',
               controller: 'HeaderCtrl as header'
             }
-          }
+          },
+          data: { requiresLogin: false }
         });
     });
 })(angular);

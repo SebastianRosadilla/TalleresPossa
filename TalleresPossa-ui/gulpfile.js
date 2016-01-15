@@ -12,6 +12,7 @@ var FILES = {
     SCSS: ['src/**/scss/*.*', 'src/**/scss/**/*.*',
            'bower_components/bootstrap/dist/css/bootstrap.min.css',
            'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+          //  'bower_components/bootstrap/less/normalize.less',
            'bower_components/fullpage.js/jquery.fullPage.scss'],
     HTML: ['src/**/templates/*.*', 'src/index.html'],
     BOWER: ['bower_components/**/*.*', 'src/extra/*.*'],
@@ -35,7 +36,7 @@ var FILES = {
 gulp.task('watch', ['js', 'scss', 'html'], function () {
   plugins.browserSync({
     server: { baseDir: 'build' },
-    port: 3000, 
+    port: 3000,
     files: [
       FILES.DEST.JS,
       FILES.DEST.CSS,

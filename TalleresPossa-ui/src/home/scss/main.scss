@@ -30,8 +30,61 @@
       box-sizing: border-box;
       width: 100%;
 
+      // ng repeat container
       >div {
-        opacity: 0.6;
+
+        // slides
+        &:first-child {
+          background: rgba(255, 255, 255, 0.40);
+          height: 100%;
+
+          >div {
+            height: 100%;
+            position: relative;
+
+            >div {
+              height: 100%;
+
+              >div {
+                height: 100%;
+
+                >div {
+                  height: 100%;
+                  position: relative;
+
+                  // thumbnail
+                  >div {
+                    background: rgba(255, 255, 255, 0.40);
+                    height: 80%;
+                    left: 20%;
+                    position: absolute;
+                    top: 10%;
+                    width: 60%;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // Arrows thumbnail
+        &:nth-child(2), &:nth-child(3) {
+          transition: 0.5s;
+          transform: none;
+          // Left arrow
+          &:nth-child(2) {
+            border-color: transparent #333 transparent transparent;
+          }
+
+          // Right arrow
+          &:nth-child(3) {
+            border-color: transparent transparent transparent #333;
+          }
+
+          &:active {
+            transform: scale(1.1) rotateY(180deg);
+          }
+        }
       }
     }
 
@@ -45,7 +98,11 @@
       >div {
 
         >div {
-          height: 50%;
+          height: 60%;
+
+          &:last-child {
+            height: 40%;
+          }
 
           // Columns client information
           >div {

@@ -19,49 +19,63 @@
     }
 
     >div {
-      box-sizing: border-box;
-      height: 80%;
+      height: 100%;
+      width: 100%;
+      position: relative;
 
-      hr {
-        border: 1px solid rgb(240, 173, 78);
-        margin: 1px 3% 10px 3%;
-      }
+      >div {
+        box-sizing: border-box;
+        position: absolute;
+        height: 80%;
 
-      &:first-child {
-        height: 12%;
+        hr {
+          border: 1px solid rgb(240, 173, 78);
+          margin: 1px 3% 10px 3%;
+        }
 
-        >div {
-          float: left;
-          width: 50%;
+        &:first-child {
+          height: 12%;
+          top: 0;
+          width: 100%;
 
-          // error container
-          &:last-child {
-            float: right;
-            margin-top: 20px;
-            text-align: center;
+          >div {
+            float: left;
+            width: 50%;
+
+            // error container
+            &:last-child {
+              float: right;
+              margin-top: 20px;
+              text-align: center;
+            }
           }
         }
-      }
 
-      // Input groups
-      &:nth-child(2) {
-        >div {
-          height: 10%;
-        }
+        // Input groups
+        &:nth-child(2) {
+          height: 80%;
+          top: 12%;
+          width: 100%;
 
-        .description {
-          height: 50%;
-          textarea {
-            height: 100%;
+          >div {
+            height: 10%;
+          }
+
+          .description {
+            height: 50%;
+            textarea {
+              height: 100%;
+            }
           }
         }
-      }
 
-      &:last-child {
-        height: 8%;
-        >div {
-          margin-bottom: 2%;
-          max-height: 100%;
+        &:last-child {
+          height: 8%;
+          top: 92%;
+          >div {
+            margin-bottom: 2%;
+            max-height: 100%;
+          }
         }
       }
     }

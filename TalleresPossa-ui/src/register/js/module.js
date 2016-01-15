@@ -17,7 +17,8 @@
               templateUrl: 'register/templates/register.html',
               controller: 'RegCtrl as register'
             }
-          }
+          },
+          data: { requiresLogin: false }
         });
     });
 })(angular);

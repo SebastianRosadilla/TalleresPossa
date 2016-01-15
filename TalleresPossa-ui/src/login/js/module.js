@@ -17,7 +17,8 @@
               templateUrl: 'login/templates/login.html',
               controller: 'LoginCtrl as login'
             }
-          }
+          },
+          data: { requiresLogin: false }
         });
     });
 })(angular);

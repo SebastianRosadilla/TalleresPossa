@@ -20,43 +20,74 @@
   .landing {
     box-sizing: border-box;
     height: 100%;
-    overflow-y: hidden;
+    position: relative;
+    width: 100%;
 
-    >div:first-child {
+    >div {
+      position: absolute;
+      width: calc(100% - 30px);
 
-      .dropdown {
-        button {
-          background: #fff;
-          border: 2px solid #337ab7;
-          border-radius: 0;
-          box-shadow: 0 0 80px;
+      // Header container
+      &:first-child {
+        border-bottom: 2px solid #EEE;
+        top: 0;
+        height: 8%;
 
-          span {
-            vertical-align: middle;
+        .dropdown {
+          button {
+            background: #fff;
+            border: 2px solid #337ab7;
+            border-radius: 0;
+            box-shadow: 0 0 80px;
+
+            span {
+              vertical-align: middle;
+            }
+          }
+
+          ul {
+            border: 1px solid #337ab7;
+            border-radius: 0;
+            box-shadow: 0 35px 80px;
+            transform: translateX(4%);
+            text-align: center;
           }
         }
 
-        ul {
-          border: 1px solid #337ab7;
-          border-radius: 0;
-          box-shadow: 0 35px 80px;
-          transform: translateX(4%);
-          text-align: center;
+        >div:last-child {
+          margin-top: 20px;
+          span {
+            background: transparent;
+            border: none;
+
+            &:hover {
+              color: #337ab7;
+            }
+            &:active {
+              border: none;
+            }
+          }
         }
       }
 
-      >div:last-child {
-        margin-top: 20px;
-        span {
-          background: transparent;
-          border: none;
+      // Text center container
+      &:nth-child(2) {
+        height: 43%;
+        top: 14%;
 
-          &:hover {
-            color: #337ab7;
-          }
-          &:active {
-            border: none;
-          }
+        // text-align: center;
+      }
+
+      // Buttons and prints container
+      &:last-child {
+        height: 43%;
+        top: 57%;
+
+        .btn {
+          background: #337AB7;
+          border: 1px solid #686868;
+          border-radius: 2px;
+          color: #fff;
         }
       }
     }

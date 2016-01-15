@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `login` tinyint(1) NOT NULL DEFAULT '0',
   `Usuario` varchar(50) NOT NULL,
-  `Contrasena` varchar(50) NOT NULL,
+  `Contrasena` varchar(100) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Empresa` varchar(50) DEFAULT NULL,
   `Telefono` varchar(20) DEFAULT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `usuarios` (
   `UltimaActualizacion` varchar(10) NOT NULL,
   `ID` int(5) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1 COMMENT='Tabla de usuarios';
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1 COMMENT='Tabla de usuarios';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'FabianPossamai','Pene22??','Nelso Fabian Possamai Aguirre','TalleresPossa S.A','+22967138','+22967138','+59899154904','nelfapos@hotmail.com','Dueno de la empresa xD','01/1/2016','01/1/2016',1),(1,'networkDevelopper','networkingonyourNetwork?','Alfredo Sebastian Rosadilla Ribeiro','NetworkDeveloppers S.A','+229671384','+22967138','+59897416576','networkdeveloppers@gmail.com','Developpers Enginners','','01/1/2016',2);
+INSERT INTO `usuarios` VALUES (1,'FabianPossamai','$2a$10$FGaK0yMPuIDQa3ayw7Rdc.ykYiceXV9T0d.SfsmyyeXW67YpA8DoS','Nelso Fabian Possamai Aguirre','TalleresPossa S.A','+22967138','+22967138','+59899154904','nelfapos@gmail.com','Dueño de la empresa!! xD','01/1/2016','01/1/2016',1),(0,'networkDevelopper','$2a$10$zOE0.CLxS0hFEcHvIAYpSen1w6DLJ2zJGpKR.ZPfXeix1HH8d.QNG','Alfredo Sebastian Rosadilla Ribeiro','NetworkDeveloppers S.A','+22967138','+22967138','+59897416576','networkdeveloppers@gmail.com','The best developer!!!','01/1/2016','01/1/2016',67);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-07 21:23:50
+-- Dump completed on 2016-01-15 14:17:29

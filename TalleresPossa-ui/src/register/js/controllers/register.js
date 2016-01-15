@@ -16,6 +16,19 @@
       phone: '', email: '',
       description: ''
     }
+
+    //FIXME trouble whit jQuery
+    if ($rootScope.notHome) {
+      $rootScope.Home = false;
+      window.location.reload();
+
+      // none display the things for 0.5s to render the page
+      // This behavior allow no see the restructure then of visit home page
+      document.getElementsByClassName('main')[0].style.display = 'none';
+      setTimeout(function () {
+        document.getElementsByClassName('main')[0].style.display = '';
+      }, 500)
+    }
   };
 
   RegCtrl.prototype.userValidation = function() {

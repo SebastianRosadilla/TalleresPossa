@@ -1,8 +1,29 @@
 .foot-bar {
-  border-top: 6px dashed black;
   box-sizing: border-box;
   height: 100%;
   text-align: left;
+
+  footer {
+    height: 200px;
+    position: relative;
+    width: 100%;
+
+    // TalleresPossa title container
+    >div {
+      height: 64%;
+      overflow-y: auto;
+      position: absolute;
+      // This difference is for the hr
+      top: 36%;
+      width: 100%;
+
+      &:first-child {
+        height: 35%;
+        overflow: hidden;
+        top: 0;
+      }
+    }
+  }
 
   blockquote {
     text-align: justify;

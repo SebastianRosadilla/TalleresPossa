@@ -1,4 +1,5 @@
 var mysql = require('mysql'),
+    encrypt = require('../check/encrypt'),
     q = require('q'),
     userConnection = {
       host     : '54.201.114.39',
@@ -6,6 +7,8 @@ var mysql = require('mysql'),
       password : 'TalleresPossa2015?',
       database: 'TalleresPossa'
     };
+
+// mysql.escape used to safe to injetion attack
 
 function currentDate() {
   var date = new Date(),
@@ -26,7 +29,7 @@ function usersInfoDB(user) {
 
   // When a ordinary user send a request
   if (user)
-      query = 'SELECT * FROM `usuarios` WHERE `Usuario` = \'' + user + '\' LIMIT 0 , 30'
+      query = 'SELECT * FROM `usuarios` WHERE `Usuario` = ' + mysql.escape(user) + ' LIMIT 0 , 30'
   // When admin send a request
   else
       query = 'SELECT * FROM `usuarios` LIMIT 0 , 30'
@@ -75,7 +78,7 @@ function emailExist(email) {
 
     // Comparte the dates
     connection.query(
-        'SELECT * FROM  `usuarios` WHERE  `Correo` LIKE  \'' + email + '\' LIMIT 0 , 30',
+        'SELECT * FROM  `usuarios` WHERE  `Correo` LIKE ' + mysql.escape(email) + ' LIMIT 0 , 30',
         function (err, rows) {
           if (err)
             deffered.resolve(false);
@@ -108,7 +111,7 @@ function userExist(user) {
 
     // Comparte the dates
     connection.query(
-        'SELECT * FROM  `usuarios` WHERE  `Usuario` LIKE  \'' + user + '\' LIMIT 0 , 30',
+        'SELECT * FROM  `usuarios` WHERE  `Usuario` LIKE ' + mysql.escape(user) + ' LIMIT 0 , 30',
         function (err, rows) {
           if (err)
             deffered.resolve(false);
@@ -142,19 +145,24 @@ function login(user, password) {
 
       // Comparte the dates
       connection.query(
-          'SELECT * FROM  `usuarios` WHERE  `Usuario` LIKE  \'' + user + '\' AND  `Contrasena` LIKE  \'' + password + '\' LIMIT 0 , 30',
+          'SELECT * FROM  `usuarios` WHERE  `Usuario` LIKE  ' + mysql.escape(user) + ' LIMIT 0 , 30',
           function (err, rows, fields) {
             if (err)
               deffered.resolve(false);
             else
+              // Exist a user param on data store
               if (rows.length === 1)
-                deffered.resolve(true);
+                // check hash code
+                encrypt.checkHash(password, rows[0].Contrasena)
+                  .then(function(result) {
+                    deffered.resolve(result);
+                  })
               else
                 deffered.resolve(false);
 
             // Upgrate the login info on db
             connection.query(
-              'UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'1\' WHERE  `Usuario` LIKE  \'' + user + '\'',
+              'UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'1\' WHERE  `Usuario` LIKE ' + mysql.escape(user),
               function (err) {
                 if (err) throw err;
                 // End the connection
@@ -173,7 +181,25 @@ function login(user, password) {
 
 function register(user, password, name, company, number, fax, phone, email, description) {
   var connection = mysql.createConnection(userConnection),
-      date = currentDate();
+      date = currentDate(),
+      query = 'INSERT INTO `TalleresPossa`.`usuarios` '
+                      +'(`login`, `Usuario`, `Contrasena`, `Nombre`, `Empresa`, `Telefono`, `Fax`, `Celular`, `Correo`, `Info`, `Creacion`, `UltimaActualizacion`, `ID`)'
+                      +' VALUES (\'0\',' + mysql.escape(user) + ', ' + mysql.escape(password) + ','
+                      +' ' + mysql.escape(name) + ', ' + mysql.escape(company) + ', ' + mysql.escape(number) + ','
+                      +' ' + mysql.escape(fax) + ', ' + mysql.escape(phone) + ', ' + mysql.escape(email) + ','
+                      +' ' + mysql.escape(description) + ', \'' + date + '\','
+                      +' \'' + date + '\', NULL);';
+
+
+    if(user === 'FabianPossamai')
+      // Just for the case when admin delete the account and register again
+      query = 'INSERT INTO `TalleresPossa`.`usuarios` '
+              +'(`login`, `Usuario`, `Contrasena`, `Nombre`, `Empresa`, `Telefono`, `Fax`, `Celular`, `Correo`, `Info`, `Creacion`, `UltimaActualizacion`, `ID`)'
+              +' VALUES (\'0\', ' + mysql.escape(user) + ', ' + mysql.escape(password) + ','
+              +' ' + mysql.escape(name) + ', ' + mysql.escape(company) + ', ' + mysql.escape(number) + ','
+              +' ' + mysql.escape(fax) + ', ' + mysql.escape(phone) + ', ' + mysql.escape(email) + ','
+              +' ' + mysql.escape(description) + ', \'' + date + '\','
+              +' \'' + date + '\', \'1\');'
 
     connection.connect(function(err) {
       if (err) throw err
@@ -181,13 +207,7 @@ function register(user, password, name, company, number, fax, phone, email, desc
       console.log('conect to database (Recording), success.');
     });
 
-    connection.query('INSERT INTO `TalleresPossa`.`usuarios` '
-                    +'(`login`, `Usuario`, `Contrasena`, `Nombre`, `Empresa`, `Telefono`, `Fax`, `Celular`, `Correo`, `Info`, `Creacion`, `UltimaActualizacion`, `ID`)'
-                    +' VALUES (\'0\', \'' + user + '\', \'' + password + '\','
-                    +' \'' + name + '\', \'' + company + '\', \'' + number + '\','
-                    +' \'' + fax + '\', \'' + phone + '\', \'' + email + '\','
-                    +' \'' + description + '\', \'' + date + '\','
-                    +' \'' + date + '\', NULL);', function(err) {
+    connection.query(query, function(err) {
     if (err) throw err
 
     // End the connection
@@ -209,7 +229,7 @@ function deleteUser(user) {
 
       // Upgrate the login info on db
       connection.query(
-        'DELETE FROM `TalleresPossa`.`usuarios`  WHERE  `Usuario` =  \'' + user + '\'',
+        'DELETE FROM `TalleresPossa`.`usuarios`  WHERE  `Usuario` = ' + mysql.escape(user),
         function (err) {
           if (err) throw err
           // End the connection
@@ -235,7 +255,7 @@ function closeSession(user) {
         });
 
         // Update the login data
-        connection.query('UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'0\' WHERE  `Usuario` LIKE  \'' + user + '\'',
+        connection.query('UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'0\' WHERE  `Usuario` LIKE ' + mysql.escape(user),
                           function(err) {
                             if (err)
                               deffered.resolve(false)
@@ -265,7 +285,7 @@ function setOffLogin(user) {
 
       // Upgrate the login info on db
       connection.query(
-        'UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'0\' WHERE  `Usuario` LIKE  \'' + user + '\'',
+        'UPDATE  `TalleresPossa`.`usuarios` SET  `login` =  \'0\' WHERE  `Usuario` LIKE ' + mysql.escape(user),
         function (err) {
           if (err) throw err
           // End the connection
@@ -289,17 +309,17 @@ function editUser(user, password, name, company, number, fax, phone, email, desc
       });
 
       connection.query('UPDATE  `TalleresPossa`.`usuarios` SET '
-      + '`Usuario` =  \''+ user + '\','
-      + '`Contrasena` =  \'' + password + '\','
-      + '`Nombre` =  \'' + name + '\','
-      + '`Empresa` =  \'' + company + '\','
-      + '`Telefono` =  \'' + number + '\','
-      + '`Fax` =  \'' + fax + '\','
-      + '`Celular` =  \'' + phone + '\','
-      + '`Correo` =  \'' + email + '\','
-      + '`Info` =  \'' + description + '\','
+      + '`Usuario` = '+ mysql.escape(user) + ','
+      + '`Contrasena` = ' + mysql.escape(password) + ','
+      + '`Nombre` = ' + mysql.escape(name) + ','
+      + '`Empresa` = ' + mysql.escape(company) + ','
+      + '`Telefono` = ' + mysql.escape(number) + ','
+      + '`Fax` = ' + mysql.escape(fax) + ','
+      + '`Celular` = ' + mysql.escape(phone) + ','
+      + '`Correo` = ' + mysql.escape(email) + ','
+      + '`Info` = ' + mysql.escape(description) + ','
       + '`UltimaActualizacion` =  \'' + currentDate() + '\' '
-      + 'WHERE  `Usuario` LIKE  \'' + lastUser + '\'', function(err) {
+      + 'WHERE  `Usuario` LIKE ' + mysql.escape(lastUser), function(err) {
         if (err) {
           deffered.resolve(false);
           throw err
