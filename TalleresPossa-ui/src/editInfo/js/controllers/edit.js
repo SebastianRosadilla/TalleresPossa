@@ -72,7 +72,7 @@
       userToSend = '';
 
     $http({
-      url: 'http://127.0.0.1:8000/userExist',
+      url: 'http://54.213.88.198:80/userExist',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
@@ -100,7 +100,7 @@
       emailToSend = '';
 
     $http({
-      url: 'http://127.0.0.1:8000/emailExist',
+      url: 'http://54.213.88.198:80/emailExist',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
@@ -182,7 +182,7 @@
         if (result || (formElements.lastUser === formElements.user)) {
           // Delete the old user
           $http({
-            url: 'http://127.0.0.1:8000/edit',
+            url: 'http://54.213.88.198:80/edit',
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: $.param({
@@ -200,7 +200,7 @@
             else {
               // Login with new user
               $http({
-                url: 'http://127.0.0.1:8000/login',
+                url: 'http://54.213.88.198:80/login',
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $.param({

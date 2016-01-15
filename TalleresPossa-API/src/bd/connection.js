@@ -2,7 +2,7 @@ var mysql = require('mysql'),
     encrypt = require('../check/encrypt'),
     q = require('q'),
     userConnection = {
-      host     : '54.201.114.39',
+      host     : '54.213.88.198',
       user     : 'root',
       password : 'TalleresPossa2015?',
       database: 'TalleresPossa'

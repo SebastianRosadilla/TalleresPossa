@@ -37,7 +37,7 @@
         deffered = this._$q.defer();
 
     $http({
-      url: 'http://127.0.0.1:8000/userExist',
+      url: 'http://54.213.88.198:80/userExist',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
@@ -60,7 +60,7 @@
         deffered = this._$q.defer();
 
     $http({
-      url: 'http://127.0.0.1:8000/emailExist',
+      url: 'http://54.213.88.198:80/emailExist',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
@@ -139,7 +139,7 @@
           if (result) {
             // Send the form info
             $http({
-              url: 'http://127.0.0.1:8000/register',
+              url: 'http://54.213.88.198:80/register',
               method: 'POST',
               headers: {'Content-Type': 'application/x-www-form-urlencoded'},
               data: $.param({
@@ -156,7 +156,7 @@
               else {
                 // Login user
                 $http({
-                  url: 'http://127.0.0.1:8000/login',
+                  url: 'http://54.213.88.198:80/login',
                   method: 'POST',
                   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                   data: $.param({

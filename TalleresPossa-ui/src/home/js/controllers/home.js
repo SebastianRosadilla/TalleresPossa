@@ -266,7 +266,7 @@
         formElements = this.formElements;
 
     $http({
-      url: 'http://127.0.0.1:8000/email',
+      url: 'http://54.213.88.198:80/email',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({
