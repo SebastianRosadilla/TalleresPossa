@@ -5,10 +5,10 @@ var express = require('express'),
 
     getRequest = require('./request/getRequest'),
     postRequest = require('./request/postRequest'),
-    port = 3000;
+    port = 8000;
 
 function allow (res) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.132.62');
+  res.setHeader('Access-Control-Allow-Origin', 'http://554.213.88.198:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);

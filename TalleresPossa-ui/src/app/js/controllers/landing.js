@@ -20,7 +20,7 @@
     //FIXME trouble whit jQuery
     if ($rootScope.notHome) {
       $rootScope.Home = false;
-      window.location = 'http://54.201.132.62:80';
+      window.location = 'http://54.213.88.198:3000';
 
       // none display the things for 0.5s to render the page
       // This behavior allow no see the restructure then of visit home page
@@ -57,7 +57,7 @@
 
     if (userInfo.Usuario) {
       $http({
-        url: 'http://54.213.88.198:80/delete',
+        url: 'http://54.213.88.198:8000/delete',
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         data: $.param({
@@ -87,7 +87,7 @@
     $scope.userInfo.hasOwnProperty('Usuario') ? $scope.user = $scope.userInfo.Usuario : $scope.user = '';
 
     $http({
-      url: 'http://54.213.88.198:80/signOut',
+      url: 'http://54.213.88.198:8000/signOut',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: $.param({

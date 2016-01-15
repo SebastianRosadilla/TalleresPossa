@@ -8,7 +8,7 @@
           deffered = $q.defer();
 
       $http({
-        url:'http://54.213.88.198:80',
+        url:'http://54.213.88.198:8000',
         method: 'GET',
         params: localStorage.TalleresPossaAuth
       })
