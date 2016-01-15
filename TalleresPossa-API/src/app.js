@@ -5,7 +5,7 @@ var express = require('express'),
 
     getRequest = require('./request/getRequest'),
     postRequest = require('./request/postRequest'),
-    port = 80;
+    port = 3000;
 
 function allow (res) {
   res.setHeader('Access-Control-Allow-Origin', 'http://54.201.132.62:80');
