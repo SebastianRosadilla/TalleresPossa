@@ -8,7 +8,7 @@ var express = require('express'),
     port = 3000;
 
 function allow (res) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.132.62:80');
+  res.setHeader('Access-Control-Allow-Origin', 'http://54.201.132.62');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
