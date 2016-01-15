@@ -76,7 +76,7 @@
       <!-- Other user data -->
       <div class="container col-xs-12">
         <hr>
-        <div class="container col-xs-10 col-xs-offset-1" ng-repeat="user in show.allInfo.userData | filter:search">
+        <div class="container col-xs-10 col-xs-offset-1" ng-repeat="user in show.allInfo.userData | filter:search | orderBy:'Nombre'">
           <div class="container col-xs-6">
             <span>LOGIN</span>
             <div><span>- {{user.login ? 'Conectado' : 'Desconectado'}}</span></div>

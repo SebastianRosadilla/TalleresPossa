@@ -94,8 +94,7 @@
        user: $scope.user
       })
     })
-
-    localStorage.TalleresPossaAuth = '';
+    .success(function() {localStorage.TalleresPossaAuth = ''})
 }
 
   ng.module('talleresPossa')

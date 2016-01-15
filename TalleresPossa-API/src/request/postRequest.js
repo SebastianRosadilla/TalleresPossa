@@ -2,7 +2,8 @@ var q = require('q'),
     sendEmail = require('../email/sendEmail'),
     connection = require('../bd/connection'),
     validation = require('../check/validations.js'),
-    token = require('../check/token.js');
+    token = require('../check/token.js'),
+    encrypt = require('../check/encrypt');
 
 function login(req, res) {
   if (validation.loginValidation(req)) {
@@ -23,14 +24,16 @@ function login(req, res) {
 
 function register(req, res) {
   if (validation.registerValidation(req)) {
+    encrypt.createHash(req.body.password)
+      .then(function(hash) {
+        connection.register(req.body.user, hash,
+                            req.body.name, req.body.company,
+                            req.body.number, req.body.fax,
+                            req.body.phone, req.body.email,
+                            req.body.description);
 
-    connection.register(req.body.user, req.body.password,
-                        req.body.name, req.body.company,
-                        req.body.number, req.body.fax,
-                        req.body.phone, req.body.email,
-                        req.body.description);
-
-    res.end('success')
+        res.end('success')
+      })
   } else
     res.end('Data Wrong');
 }
@@ -87,19 +90,22 @@ function editUser(req, res) {
     req.body.user = req.body.lastUser;
 
   // run the register test
-  if (validation.registerValidation(req))
-    connection.editUser(req.body.user, req.body.password,
-                        req.body.name, req.body.company,
-                        req.body.number, req.body.fax,
-                        req.body.phone, req.body.email,
-                        req.body.description, req.body.lastUser)
-    .then(function(result) {
-      if (result)
-        res.end('success')
-      else
-        res.end('fail')
-    })
-  else
+  if (validation.registerValidation(req)){
+    encrypt.createHash(req.body.password)
+      .then(function(hash) {
+        connection.editUser(req.body.user, hash,
+                            req.body.name, req.body.company,
+                            req.body.number, req.body.fax,
+                            req.body.phone, req.body.email,
+                            req.body.description, req.body.lastUser)
+        .then(function(result) {
+          if (result)
+            res.end('success')
+          else
+            res.end('fail')
+        })
+      })
+  }else
     res.end('fail')
 }
 

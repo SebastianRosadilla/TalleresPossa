@@ -82,6 +82,13 @@
       &:last-child {
         height: 43%;
         top: 57%;
+
+        .btn {
+          background: #337AB7;
+          border: 1px solid #686868;
+          border-radius: 2px;
+          color: #fff;
+        }
       }
     }
   }
