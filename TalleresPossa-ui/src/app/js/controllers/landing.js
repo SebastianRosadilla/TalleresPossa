@@ -74,10 +74,7 @@
   }
 
   LandingCtrl.prototype.logged = function() {
-    if (localStorage.TalleresPossaAuth != '')
-      return false
-
-    return true
+    return (localStorage.hasOwnProperty('TalleresPossaAuth') && localStorage.TalleresPossaAuth != '')
   }
 
   LandingCtrl.prototype.closeSession = function() {
