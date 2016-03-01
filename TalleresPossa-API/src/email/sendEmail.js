@@ -9,7 +9,7 @@ function sendEmail(req, res) {
         // Simultaneous connections
         maxConnections: 10,
         // Limits the message count to be sent using a single connection
-        maxMessages: 1,
+        maxMessages: 10,
 
         // How many milliseconds to wait for the connection to establish
         connectionTimeout: 5000,
@@ -29,11 +29,13 @@ function sendEmail(req, res) {
         from: req.body.email,
         to: emailUser,
         subject: req.body.subject,
-        html: '<h2><u>' + req.body.subject + '</u>:</h2>'
-            +'<h3><center>' + req.body.description + '</center></h3>'  // plaintext body
-            + '<h4><br>'
-            + 'Nombre: ' + req.body.name + '<br>'
-            + 'Email: ' + req.body.email + '<br></h4>',
+        html: ''.concat(
+          '<h2><u>', req.body.subject, '</u>:</h2>',
+          '<h3><center>', req.body.description, '</center></h3>',
+          '<h4><br>',
+          'Nombre: ', req.body.name, '<br>',
+          'Email: ', req.body.email, '<br></h4>'
+        )
       };
 
 
