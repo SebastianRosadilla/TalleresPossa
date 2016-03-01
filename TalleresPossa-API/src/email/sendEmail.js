@@ -3,7 +3,7 @@ function sendEmail(req, res) {
       sgTransport = require('nodemailer-sendgrid-transport'),
       userSendGrid = 'talleres_possa',
       passSendGrid = 'TalleresPossa_sendgrid2016?',
-      emailUser = 'tallerespossa@gmail.com',
+      emailUser = 'nelfapos@hotmail.com',
       options = {
         pool: true,
         // Simultaneous connections
